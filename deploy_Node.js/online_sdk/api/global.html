@@ -1,0 +1,3898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Global</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Global</h1>
+    
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2></h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Method Summary</h3>
+        
+        <dl>
+          
+
+
+  <dt>
+    <span class="signature"><a href="global.html#openSession" class="openSession">openSession</a><span class="signature">
+  </dt>
+  
+      <dd class="summary">Connects to the MQTT&#46;Cool server specified by the
+provided address, to request the opening of a new session, which will be
+encapsulated into an <a href="MQTTCoolSession.html">MQTTCoolSession</a> instance.</dd>
+  
+  
+ 
+        </dl>
+    
+    
+        
+    
+    
+        <h3 class="subsection-title">Method Detail</h3>
+        <dl>
+            
+<dt>
+
+
+    <h4 class="name" id="openSession"><span class="type-signature"></span>openSession<span class="signature">(serverAddress, username<span class="signature-attributes">opt, nullable</span>, password<span class="signature-attributes">opt, nullable</span>, listener<span class="signature-attributes">non-null</span>)</span><span class="type-signature"></span></h4>
+
+</dt>
+<dd>
+
+
+<div class="description">
+    Connects to the MQTT&#46;Cool server specified by the
+provided address, to request the opening of a new session, which will be
+encapsulated into an <a href="MQTTCoolSession.html">MQTTCoolSession</a> instance.
+<p>
+Once the connection is established, a new instance of
+<code>MQTTCoolSession</code> will be provided through asynchronous
+invocation of the <a href="MQTTCoolListener.html#onConnectionSuccess">MQTTCoolListener#onConnectionSuccess</a>
+method.
+<p>
+The method can be invoked multiple times to create distinct
+sessions against the same MQTT&#46;Cool server if the same
+address is supplied.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>serverAddress</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The address of the
+  MQTT&#46;Cool server.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>username</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                    &lt;nullable><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The username to be used for the
+  authentication on MQTT&#46;Cool.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>password</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                    &lt;nullable><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The password to be used for the
+  authentication on MQTT&#46;Cool.
+  <p>
+  This argument can be passed only if <code>username</code> is supplied
+  too; if it is not the case, an exception will be thrown.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>listener</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="MQTTCoolListener.html">MQTTCoolListener</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The listener that will receive the
+  events related to creation of <a href="MQTTCoolSession.html">MQTTCoolSession</a>. It is not
+  mandatory that this parameter implements the <a href="MQTTCoolListener.html">MQTTCoolListener</a>
+  interface, but at least it should supply an implementation of the
+  <a href="MQTTCoolListener.html#onConnectionSuccess">MQTTCoolListener#onConnectionSuccess</a> method, otherwise it
+  would be impossible to get the reference to the
+  <code>MQTTCoolSession</code> instance.
+  <p>
+  Note that this parameter has to be passed as last argument; if it is
+  not the case, an exception will be thrown.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+<ul>
+        <li>
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        If the provided arguments are invalid.
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+</li>
+    
+        <li>
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        If an invalid address is passed.
+  See <a href="http://www.lightstreamer.com/api/ls-nodejs-client/7.2.4/ConnectionDetails.html#setServerAddress">ConnectionDetails#setServerAddress</a>
+  for details.
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">IllegalArgumentException</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+</li>
+    </ul>
+
+
+
+
+    <h5>Example</h5>
+    
+        <p class="code-caption">Allowed invocation forms of openSession.</p>
+    
+    <pre class="prettyprint"><code>  // Passing all parameters (username and password might be also null)
+  openSession('http://my.push.server', 'username', 'password', listener);
+
+  // Passing only serveAddress, username (which might be null) and listener.
+  openSession('http://my.push.server', 'username', listener);
+
+  // Passing only serverAddress and listener.
+  openSession('http://my.push.server', listener);</code></pre>
+
+</dd>    
+
+
+        </dl>
+    
+    
+    
+        <h3 class="subsection-title">Type Definitions</h3>
+        
+        <dl>
+                
+<dt>
+    <h4 class="name" id="ConnectOptions">ConnectOptions</h4>
+
+
+</dt>
+<dd>
+
+<div class="description">
+    Object containing the properties which
+  specify the options to be used for controlling the connection to the
+  target MQTT broker. If not supplied to the
+  <a href="MqttClient.html#connect">MqttClient#connect</a> method, then the default values apply as
+  specified below.
+  <p>
+  Note that if the provided properties are not of the expected type,
+  then an exception will be thrown on <a href="MqttClient.html#connect">MqttClient#connect</a>
+  invocation.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>username</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">The username to be used for authenticating
+  with the target MQTT broker.
+  <p>
+  Note that an empty string (<code>''</code>) is considered as a valid
+  username.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>password</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">The password to be used for authenticating
+  with the target MQTT broker.
+  <p>
+  Note that an empty string (<code>''</code>) is considered a valid
+  password.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>willMessage</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Message.html">Message</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">The message to be stored to the target
+  MQTT broker and that is to be published to the Will Topic if the
+  end-to-end connection closes abruptly (or any other event mentioned in
+  the MQTT Protocol Specifications).
+  <p>
+  Note that in the case of shared connection, which does not allow
+  Will Message, the property must be left unset (or, at least, should be
+  set to <code>null</code>), otherwise an exception will be thrown on
+ <a href="MqttClient.html#connect">MqttClient#connect</a> invocation.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cleanSession</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    true
+                
+                </td>
+            
+
+            <td class="description last">If set to <code>false</code>,
+  indicates that session persistence is required, otherwise any previous
+  session will be discarded upon successful connection.
+  <p>
+  Note that in the case of shared connection, which does not allow a
+  persistent session, the flag must be set to <code>true</code> or left
+  unset, otherwise an exception will be thrown on
+ <a href="MqttClient.html#connect">MqttClient#connect</a> invocation.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>storage</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="MqttStorage.html">MqttStorage</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><code>MqttStorage</code> instance,
+  which provides a custom implementation of the persistence layer, needed
+  to store the session as required when the <code>cleanSession</code>
+  flag is set to <code>false</code>.
+  If no instance is provided (or <code>null</code>), then the default
+  implementation based on the local file system will be used.
+  <p>
+  Before using the <code>MqttStorage</code> (either the provided custom
+  implementation or the default one), a preliminary compliance self-test
+  is performed and an exception will be thrown on
+  <a href="MqttClient.html#connect">MqttClient#connect</a> invocation if the observed functioning is
+  not as expected (for example due to some implementation errors).
+  In particular, in the case of default implementation, the self-test
+  could fail because of issues related to the usage of the local file
+  system.
+  <p>
+  Note that in the case of shared connection, which does not allow a
+  persistent session, the property must be left unset (or, at least,
+  should be set to <code>null</code>), otherwise an exception will be
+  thrown on <a href="MqttClient.html#connect">MqttClient#connect</a> invocation.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>storePath</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                    &lt;nullable><br>
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    './mqttcool-storage'
+                
+                </td>
+            
+
+            <td class="description last">The path of the directory to be provided to the default storage
+  implementation, in the case the <code>connectOptions.storage</code> is
+  not specified. This directory will host the files used to persist data
+  related to the session.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>onSuccess</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#OnConnectionSuccess">OnConnectionSuccess</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">The callback
+  function invoked upon a successful acknowledgement of the connection
+  request to the target MQTT broker; afterwards, the
+  <code>MqttClient</code> instance switches to the connected status.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>onFailure</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#OnConnectionFailure">OnConnectionFailure</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">The callback
+  function invoked in the case of any issue with either the target MQTT
+  broker or the MQTT&#46;Cool server.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>onNotAuthorized</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#OnConnectionNotAuthorized">OnConnectionNotAuthorized</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">The callback function invoked when the plugged Hook denies the
+  authorization to connect to the target MQTT broker, or raises an issue
+  while performing its checking activities.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="MqttClient.html#connect">MqttClient#connect</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+</dd>
+
+            
+                
+<dt>
+
+
+    <h4 class="name" id="OnConnectionFailure"><span class="type-signature"></span>OnConnectionFailure<span class="signature">(responseObject<span class="signature-attributes">non-null</span>)</span><span class="type-signature"></span></h4>
+
+</dt>
+<dd>
+
+
+<div class="description">
+    Callback function that is invoked in the case of connection failure to
+the target MQTT broker.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>responseObject</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The object whose properties contain the
+  details about the connection failure.
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>errorCode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The error code, which can be
+  one of the values specified in the following sections:
+  <ul>
+    <li>The <i>Connect Return</i> codes as detailed in the MQTT Protocol
+      Specification, sent by the target MQTT broker to
+      MQTT&#46;Cool (and from there forwarded to
+      <code>MqttClient</code>):
+      <ul>
+        <li><code>1</code> => <i>Connection Refused: unacceptable
+          protocol version</i>
+        </li>
+        <li><code>2</code> => <i>Connection Refused: identifier rejected
+          </i>
+        </li>
+        <li><code>3</code> => <i>Connection Refused: server unavailable
+          </i>
+        </li>
+        <li><code>4</code> => <i>Connection Refused: bad user name or
+          password</i>
+        </li>
+        <li><code>5</code> => <i>Connection Refused: not authorized</i>
+        </li>
+      </ul>
+    </li>
+    <li>Configuration and connection issues:
+      <ul>
+        <li><code>9</code> => <i>MQTT broker configuration not valid</i>
+        </li>
+        <li><code>10</code> => <i>Connection error to
+          MQTT&#46;Cool</i><br/>
+          when the underlying MQTT&#46;Cool connection has
+          been interrupted just before issuing the connection request
+        </li>
+        <li><code>11</code> => <i>Connection error to the MQTT broker</i>
+          <br/>
+          when the broker connection cannot be established, due to any
+          network issue or problem in the MQTT broker process
+        </li>
+        <li><code>12</code> => <i>Disconnection from
+          MQTT&#46;Cool</i><br/>
+          when the <a href="MQTTCoolSession.html#close">MQTTCoolSession#close</a> method has been
+          invoked on the <code>MQTTCoolSession</code> instance used
+          to create the <code>MqttClient</code> instance, just before an
+          acknowledgement of the connection request is received
+        </li>
+      </ul>
+    </li>
+    <li>Server error:
+      <ul>
+        <li><code>100</code> => <i>{'errorCode':&lt;code&gt;,
+          'errorMessage':&lt;message&gt;}</i><br/>
+          when an MQTT&#46;Cool specific issue occurs, whose
+          details are formatted as a JSON string in
+          <code>responseObject.errorMessage</code>: see
+          <a href="http://www.lightstreamer.com/api/ls-nodejs-client/7.2.4/SubscriptionListener.html#onSubscriptionError">SubscriptionListener#onSubscriptionError</a>
+          for all possible values of <code>&lt;code&gt;</code> (consider
+          only the positive ones) and <code>&lt;message&gt;</code>.
+        </li>
+      </ul>
+    </li>
+  </ul></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>errorMessage</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The description of the
+  error, as specified above.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>the <code>onFailure</code> property of <a href="global.html#ConnectOptions">ConnectOptions</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+                
+<dt>
+
+
+    <h4 class="name" id="OnConnectionLost"><span class="type-signature"></span>OnConnectionLost<span class="signature">(responseObject<span class="signature-attributes">non-null</span>)</span><span class="type-signature"></span></h4>
+
+</dt>
+<dd>
+
+
+<div class="description">
+    Callback function that is invoked when the end-to-end connection is lost.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>responseObject</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The object whose properties contain the
+  details about the connection lost event.
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>errorCode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The error code, which can be
+  one of the following:
+  <ul>
+    <li><code>0</code> => <i>Successful disconnection</i><br/>
+      when <code>MqttClient</code> has initiated a regular disconnection
+      (without waiting for a response sent back by
+      MQTT&#46;Cool)
+    </li>
+    <li><code>10</code> = <i>Connection error to
+      MQTT&#46;Cool</i>
+      <br/>
+      when the underlying MQTT&#46;Cool connection has been
+      interrupted and the reconnection attempts that follow have been
+      stopped
+    </li>
+    <li><code>11</code> => <i>Connection error to the MQTT broker</i>
+      <br/>
+      when the broker connection has been interrupted
+    </li>
+    <li><code>12</code> => <i>Disconnection from
+      MQTT&#46;Cool</i><br/>
+      when the <a href="MQTTCoolSession.html#close">MQTTCoolSession#close</a> method has been invoked on
+      the <code>MQTTCoolSession</code> instance used to create the
+      <code>MqttClient</code> instance
+    </li>
+  </ul></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>errorMessage</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The description of the
+  error, as specified above.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="MqttClient.html#onConnectionLost">MqttClient#onConnectionLost</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+                
+<dt>
+
+
+    <h4 class="name" id="OnConnectionNotAuthorized"><span class="type-signature"></span>OnConnectionNotAuthorized<span class="signature">(responseObject<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+
+</dt>
+<dd>
+
+
+<div class="description">
+    Callback function that is invoked when the plugged Hook denies the
+authorization to connect to the target MQTT broker, or raises an issue
+while performing its checking activities.
+<p>
+The authorization phase is triggered once the connection request received
+by MQTT&#46;Cool is passed to the Hook, before the actual
+broker connection is established. In the case of authorization failure,
+the request is rejected immediately and a specific error is sent back by
+MQTT&#46;Cool to <code>MqttClient</code>. As consequence of
+this, neither <a href="global.html#OnConnectionSuccess">OnConnectionSuccess</a> nor <a href="global.html#OnConnectionFailure">OnConnectionFailure</a>
+will be called for the requested connection.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>responseObject</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The object whose properties contain the
+  details about the authorization failure. Note that the object is
+  supplied only if the plugged Hook raises an issue while checking the
+  authorization to connect to the MQTT broker, whereas nothing is
+  supplied when the Hook simply denies the request.
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>errorCode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The error code, which is
+  dependent on the specific plugged Hook.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>errorMessage</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The description of the
+  error, which is dependent on the specific plugged Hook.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>the <code>onNotAuthorized</code> property of <a href="global.html#ConnectOptions">ConnectOptions</a>.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+                
+<dt>
+
+
+    <h4 class="name" id="OnConnectionSuccess"><span class="type-signature"></span>OnConnectionSuccess<span class="signature">()</span><span class="type-signature"></span></h4>
+
+</dt>
+<dd>
+
+
+<div class="description">
+    Callback function that is invoked upon a successful acknowledgement of
+the connection request to the target MQTT broker.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>the <code>onSuccess</code> property of <a href="global.html#ConnectOptions">ConnectOptions</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+                
+<dt>
+
+
+    <h4 class="name" id="OnMessageArrived"><span class="type-signature"></span>OnMessageArrived<span class="signature">(message<span class="signature-attributes">non-null</span>)</span><span class="type-signature"></span></h4>
+
+</dt>
+<dd>
+
+
+<div class="description">
+    Callback function that is invoked upon receiving an Application Message.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>message</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Message.html">Message</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The incoming Application Message.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="MqttClient.html#onMessageArrived">MqttClient#onMessageArrived</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+                
+<dt>
+
+
+    <h4 class="name" id="OnMessageDelivered"><span class="type-signature"></span>OnMessageDelivered<span class="signature">(message<span class="signature-attributes">non-null</span>)</span><span class="type-signature"></span></h4>
+
+</dt>
+<dd>
+
+
+<div class="description">
+    Callback function that is invoked when the delivery process of an
+Application Message completes.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>message</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Message.html">Message</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The delivered Application Message.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="MqttClient.html#onMessageDelivered">MqttClient#onMessageDelivered</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+                
+<dt>
+
+
+    <h4 class="name" id="OnMessageNotAuthorized"><span class="type-signature"></span>OnMessageNotAuthorized<span class="signature">(message<span class="signature-attributes">non-null</span>, responseObject<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+
+</dt>
+<dd>
+
+
+<div class="description">
+    Callback function that is invoked when the plugged Hook denies the
+authorization for publishing the specified message, or raises an issue
+while performing its checking activities.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>message</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Message.html">Message</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The Application Message that failed to be
+  authorized.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>responseObject</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The object whose properties contain the
+  details about the authorization failure. Note that the object is
+  supplied only if the plugged Hook raises an issue while checking the
+  authorization for the requested publishing, whereas nothing is supplied
+  when the Hook simply denies the request.
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>errorCode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The error code, which is
+  dependent on the specific plugged Hook.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>errorMessage</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The description of the
+  error, which is dependent on the specific plugged Hook.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="MqttClient.html#onMessageNotAuthorized">MqttClient#onMessageNotAuthorized</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+                
+<dt>
+
+
+    <h4 class="name" id="OnReconnectionComplete"><span class="type-signature"></span>OnReconnectionComplete<span class="signature">()</span><span class="type-signature"></span></h4>
+
+</dt>
+<dd>
+
+
+<div class="description">
+    Callback function that is invoked upon a successful restoration of the
+end-to-end connection, which has been interrupted because of an issue
+between <code>MqttClient</code> and MQTT&#46;Cool.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="MqttClient.html#onReconnectionComplete">MqttClient#onReconnectionComplete</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+                
+<dt>
+
+
+    <h4 class="name" id="OnReconnectionStart"><span class="type-signature"></span>OnReconnectionStart<span class="signature">()</span><span class="type-signature"></span></h4>
+
+</dt>
+<dd>
+
+
+<div class="description">
+    Callback function that is invoked when an attempt to re-establish the
+end-to-end connection, which has been interrupted because of an issue
+between <code>MqttClient</code> and MQTT&#46;Cool, has
+started.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="MqttClient.html#onReconnectionStart">MqttClient#onReconnectionStart</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+                
+<dt>
+
+
+    <h4 class="name" id="OnSubscriptionFailure"><span class="type-signature"></span>OnSubscriptionFailure<span class="signature">(responseObject<span class="signature-attributes">non-null</span>)</span><span class="type-signature"></span></h4>
+
+</dt>
+<dd>
+
+
+<div class="description">
+    Callback function that is invoked in the case of failure of the requested
+subscription.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>responseObject</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The object whose properties contain the
+  details about the connection failure.
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>errorCode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The error code of the failure,
+  as returned by the MQTT broker.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><code>onFailure</code> property of <a href="global.html#SubscribeOptions">SubscribeOptions</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+                
+<dt>
+
+
+    <h4 class="name" id="OnSubscriptionNotAuthorized"><span class="type-signature"></span>OnSubscriptionNotAuthorized<span class="signature">(responseObject<span class="signature-attributes">opt, non-null</span>)</span><span class="type-signature"></span></h4>
+
+</dt>
+<dd>
+
+
+<div class="description">
+    Callback function that is invoked when the plugged Hook denies the
+authorization for the requested subscription, or raises an issue while
+performing its checking activities.
+<p>
+The authorization phase is triggered once the subscription request
+received by MQTT&#46;Cool is passed to the Hook, before
+being sent to the target MQTT broker. In the case of authorization
+failure, the request is rejected immediately and a specific error is sent
+back by MQTT&#46;Cool to <code>MqttClient</code>. As
+consequence of this, the <a href="global.html#OnSubscriptionSuccess">OnSubscriptionSuccess</a> will never be
+called for the requested subscription.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>responseObject</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The object whose properties contain
+  the details about the authorization failure. Note that the object is
+  supplied only if the plugged Hook raises an issue while checking the
+  authorization for the requested subscription, whereas nothing is
+  supplied when the Hook simply denies the request.
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>errorCode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The error code, which is
+  dependent on the specific plugged Hook.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>errorMessage</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The description of the
+  error, which is dependent on the specific plugged Hook.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><code>onNotAuthorized</code> property of <a href="global.html#SubscribeOptions">SubscribeOptions</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+                
+<dt>
+
+
+    <h4 class="name" id="OnSubscriptionSuccess"><span class="type-signature"></span>OnSubscriptionSuccess<span class="signature">(responseObject<span class="signature-attributes">non-null</span>)</span><span class="type-signature"></span></h4>
+
+</dt>
+<dd>
+
+
+<div class="description">
+    Callback function that is invoked upon a successful acknowledgement of
+the requested subscription.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>responseObject</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The object whose properties contain the
+  details about the successful acknowledgement.
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>grantedQos</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The max Quality of Service
+  level granted by the MQTT broker for the requested subscription.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><code>onSuccess</code> property of <a href="global.html#SubscribeOptions">SubscribeOptions</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+                
+<dt>
+
+
+    <h4 class="name" id="OnUnsubscribeFailure"><span class="type-signature"></span>OnUnsubscribeFailure<span class="signature">(responseObject)</span><span class="type-signature"></span></h4>
+
+</dt>
+<dd>
+
+
+<div class="description">
+    Callback function that is invoked in the case of failure of the requested
+unsubscription.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>responseObject</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The object whose properties contain the
+  details about the unsubscription failure.
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>errorCode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The error code.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>errorMessage</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The description of the
+  error.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><code>onFailure</code> property of <a href="MqttClient.html#unsubscribe">MqttClient#unsubscribe</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+                
+<dt>
+
+
+    <h4 class="name" id="OnUnsubscribeSuccess"><span class="type-signature"></span>OnUnsubscribeSuccess<span class="signature">()</span><span class="type-signature"></span></h4>
+
+</dt>
+<dd>
+
+
+<div class="description">
+    Callback function that is invoked upon a successful acknowledgement of
+the requested unsubscription.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><code>onSuccess</code> property of <a href="MqttClient.html#unsubscribe">MqttClient#unsubscribe</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+                
+<dt>
+    <h4 class="name" id="SubscribeOptions">SubscribeOptions</h4>
+
+
+</dt>
+<dd>
+
+<div class="description">
+    Object containing the properties
+  that specify the options to be used for controlling the subscription.
+  If not supplied to the <a href="MqttClient.html#subscribe">MqttClient#subscribe</a> method, then the
+  default values apply as specified below.
+  <p>
+  Note that if the provided properties are not of the expected type, then
+  an exception will be thrown on <a href="MqttClient.html#subscribe">MqttClient#subscribe</a> invocation.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>qos</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description last">The maximum Quality Of Service with which the
+  the target MQTT broker is allowed to send Application Messages.
+  <p>
+  Note that any provided value different from <code>0</code>,
+  <code>1</code> and <code>2</code> will provoke an exception to be
+  thrown on <a href="MqttClient.html#subscribe">MqttClient#subscribe</a> invocation.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>maxFrequency</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">The maximum update frequency
+  (expressed in updates per second) to be requested to
+  MQTT&#46;Cool for all messages subscribed with QoS
+  <code>0</code>. If not supplied, then the update frequency will be
+  managed as unlimited.
+  <p>
+  Note that this feature is available only in the case of shared
+  connection, whereas in the case of dedicated connection</i> this value
+  is ignored.
+  <p>
+  Note also that any provided value different from a positive <code>
+  number</code> will provoke an exception to be thrown on
+ <a href="MqttClient.html#subscribe">MqttClient#subscribe</a> invocation.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>onSuccess</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#OnSubscriptionSuccess">OnSubscriptionSuccess</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">The callback function
+  invoked upon a successful acknowledgement of the requested
+  subscription.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>onFailure</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#OnSubscriptionFailure">OnSubscriptionFailure</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">The callback function
+  invoked in the case of failure of the requested subscription.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>onNotAuthorized</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#OnSubscriptionNotAuthorized">OnSubscriptionNotAuthorized</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">The callback
+  function invoked when the plugged Hook denies the authorization for the
+  requested subscription, or raises an issue while performing its
+  checking activities.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><code>subscribeOptions</code> property of
+ <a href="MqttClient.html#subscribe">MqttClient#subscribe</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+</dd>
+
+            
+                
+<dt>
+    <h4 class="name" id="UnsubscribeOptions">UnsubscribeOptions</h4>
+
+
+</dt>
+<dd>
+
+<div class="description">
+    Object containing the properties
+  which specify the options to be used for controlling the
+  unsubscription.
+  <p>
+  Note that if the provided properties are not of the expected type,
+  then an exception will be thrown on <a href="MqttClient.html#unsubscribe">MqttClient#unsubscribe</a>
+  invocation.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>onSuccess</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#OnUnsubscribeSuccess">OnUnsubscribeSuccess</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The callback function
+  invoked upon a successful acknowledgement of the requested
+  unsubscription.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>onFailure</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#OnUnsubscribeFailure">OnUnsubscribeFailure</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The callback function
+  expected to be called in case of failure of the requested
+  unsubscription.
+  <p>
+  Note that this function is not actually employed by the current
+  implementation of the library as the MQTT Protocol Specifications does
+  not define any behavior in case of unsubscription failure. As a
+  consequence of this, this function is only formally provided, but
+  future use cannot be ruled out.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><code>unsubscribeOptions</code> property of
+  <a href="MqttClient.html#unsubscribe">MqttClient#unsubscribe</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+</dd>
+
+            </dl>
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <a href="https://mqtt.cool"><img src="logo.svg"/></a><h2><a href="index.html">Home</a> | <a href="index-all.html">Index</a></h2><h3>Externals</h3><ul><li class="signature"><a href="external-LightstreamerClient.html">LightstreamerClient</a></li></ul><h3>Classes</h3><ul><li class="signature"><a href="Message.html">Message</a></li></ul><h3>Interfaces</h3><ul><li class="signature"><a href="MqttClient.html">MqttClient</a></li><li class="signature"><a href="MQTTCoolListener.html">MQTTCoolListener</a></li><li class="signature"><a href="MQTTCoolSession.html">MQTTCoolSession</a></li><li class="signature"><a href="MqttStorage.html">MqttStorage</a></li></ul><h3>Global</h3><ul><li><a href="global.html#openSession">openSession</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    <div class="footer_text">MQTT&#46;Cool Node.js Client 1.2.5 API Reference
+      <div class="jsdoc_ctime">
+         Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue Sep 28 2021 14:22:13 GMT+0200 (W. Europe Daylight Time)
+      </div>
+    </div>
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

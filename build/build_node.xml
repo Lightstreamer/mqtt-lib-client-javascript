@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="LightstreamerMQTT_NodeClient" default="dist" basedir="../">
+  <description>Ant script for the building of MQTT Cool Node.js Client SDK</description>
+
+  <property environment="env" />
+  <property name="build_res" location="./build" />
+  <import file="${build_res}/commons.xml" />
+  <loadproperties srcFile="${build_res}/PRODUCT.info" />
+
+  <property name="tmp" location="./tmp" />
+  <property name="dist" location="./deploy_Node.js" />
+  <loadproperties srcFile="${dist}/release.properties" />
+  <property name="tmp_dist" location="${dist}/tmp" />
+  <property name="res" location="${build_res}/conf_files" />
+  <property name="generator_src" location="${build_res}/lib_generator" />
+  <property name="generator" location="${tmp}/lib_generator" />
+  <property name="templates" location="./templates" />
+
+  <property name="lib_folder" location="${dist}/lib" />
+  <property name="lib_folder_npm" location="${dist}/npm" />
+  <property name="version_res" location="${dist}/version_res" />
+
+  <property name="test_folder" location="./tests/nodejs" />
+  <property name="test_lib_folder" location="./tests/nodejs/lib" />
+  <property name="test_lib_name" value="${client_library.name}-test.js" />
+
+  <property name="orig_lib_name" value="${client_library.name}_orig.js" />
+  <property name="all_lib_name" value="${client_library.name}_all.js" />
+
+  <property name="lib_name" value="${client_library.name}.js" />
+
+  <property name="node_client_all_lib_name" value="lightstreamer_all.js" />
+  <property name="copyright_template.src" location="${templates}/copyright_template.js" />
+  <property name="copyright_template" location="${tmp_dist}/copyright_template.js" />
+
+  <property name="packagejson_template" location="${templates}/npm/nodejs_template_package.json" />
+  <property name="packagejson_deploy" location="${lib_folder_npm}/package.json" />
+  <property name="readme_template" location="${templates}/npm/nodejs_template_README.md" />
+  <property name="readme_deploy" location="${lib_folder_npm}/README.md" />
+
+  <property name="node_client_imports" location="import/node_client_imports" />
+  <property name="utility-logging-imports" location="${node_client_imports}/utility-logging-javascript" />
+  <property name="node_client_bin" location="import/node_client_bin/lib" />
+  <property name="node_client_ver" location="import/node_client_bin/version_res" />
+
+  <property name="externs_file" location="${lib_folder}/${client_library.name}-externs.js" />
+  <property name="input_node_externs_file" location="${build_res}/node-externs.js" />
+  <property name="input_externs_file" location="${node_client_bin}/lightstreamer-externs.js" />
+  <property name="input_logging_externs_file" location="${utility-logging-imports}/utility-logging-externs.js" />
+
+  <property name="src" location="source" />
+  <property name="doc_res" location="${templates}/jsdoc" />
+  <property name="temp_src" location="${tmp}/temp_src" />
+  <property name="online_sdk" location="${dist}/online_sdk" />
+
+  <tstamp>
+    <format property="current.year" pattern="yyyy" />
+  </tstamp>
+
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooSTART -->
+  <target name="init">
+    <delete dir="${tmp}" />
+    <mkdir dir="${tmp}" />
+
+    <delete dir="${online_sdk}" />
+  </target>
+
+  <target name="deps" depends="init">
+    <!-- check firefox? -->
+    <!-- check node? -->
+    <antcall target="installNodeDep" inheritAll="true">
+      <param name="dir" value="${tmp}" />
+      <param name="module" value="requirejs" />
+    </antcall>
+
+    <copy toDir="${tmp}/lib_generator">
+      <fileset dir="${generator_src}" />
+    </copy>
+  </target>
+
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooVERSIONING -->
+  <target name="version" depends="deps">
+    <antcall target="reportEmbeddedVersion">
+      <param name="report_file" value="${version_res}/client_embedded_version.number" />
+      <param name="dependency" value="Lightstreamer SDK for Node.js Clients" />
+      <param name="version_file" value="${node_client_ver}/version.number" />
+      <param name="build_file" value="${node_client_ver}/build.number" />
+    </antcall>
+
+    <ant antfile="${build_res}/build_version.xml" inheritAll="false">
+      <property name="folder" value="${version_res}" />
+    </ant>
+    <loadfile property="lighstreamer_sdk.compat.version" srcFile="${version_res}/client_embedded_version.number" />
+    <loadfile property="current.version" srcFile="${version_res}/version.number" />
+    <loadfile property="current.build" srcFile="${version_res}/build.number" />
+    <loadfile property="external.apidoc.reference" srcFile="${version_res}/external_apidoc_reference" />
+    <copy file="${build_res}/PRODUCT.info" todir="${version_res}" overwrite="true" verbose="true" />
+
+    <echo>Building ${product.name} Node.js Client ${current.version} build ${current.build}</echo>
+  </target>
+
+  <target name="public_compatibility" depends="version">
+    <!-- we cannot rely on the compatibility versions specified by the build process -->
+    <loadfile property="adapter.compat.version" srcFile="${version_res}/adapter_compatibility_version.number" />
+    <property name="compat.version" value="Compatible with ${branded_product.name} since version ${new_compat_version}" />
+    <input>
+The ${branded_product.name} Node.js Client library has the following compatibility, expressed with respect to the Lightstreamer MQTT Adapter:
+
+${adapter.compat.version}
+
+However, in the public distribution, the compatibility must be expressed with respect to Lightstreamer MQTT Extender as a whole.
+The versions of the two, in general, correspond only upon public releases of Lightstreamer MQTT Extender Standalone.
+
+Therefore, the ${branded_product.name} Node.js Client library has the following compatibility, expressed with respect to the Lightstreamer MQTT Extender Standalone:
+
+${compat.version}
+
+The new distribution package will be associated with the relase date:
+
+${distribution_date}
+    </input>
+  </target>
+
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooCLOSURE COMPILING -->
+  <target name="compile_all" depends="public_compatibility">
+    <mkdir dir="${temp_src}" />
+    <copy toDir="${temp_src}">
+      <fileset dir="${src}">
+        <include name="**/*.js" />
+      </fileset>
+    </copy>
+    <echo>Replacing token [BRANDED_PRODUCT_JSNAME_PLACEHOLDER] with ${docs.branded_javadoc_name}</echo>
+    <replace dir="${temp_src}" token="BRANDED_PRODUCT_JSNAME_PLACEHOLDER" value="${docs.branded_javadoc_name}" summary="yes" />
+
+    <echo>Replacing token [BRANDED_PRODUCT_NAME_PLACEHOLDER] with ${branded_product.name}</echo>
+    <replace dir="${temp_src}" token="BRANDED_PRODUCT_NAME_PLACEHOLDER" value="${branded_product.name}" summary="yes" />
+
+    <echo>Replacing token [PRODUCT_JSNAME_PLACEHOLDER] with ${docs.javadoc_name}</echo>
+    <replace dir="${temp_src}" token="PRODUCT_JSNAME_PLACEHOLDER" value="${docs.javadoc_name}" />
+
+    <echo>Replacing token [PRODUCT_NAME_PLACEHOLDER] with ${product.name}</echo>
+    <replace dir="${temp_src}" token="PRODUCT_NAME_PLACEHOLDER" value="${product.name}" />
+
+    <ant antfile="${build_res}/build_compile.xml" inheritAll="false">
+      <property name="input_dir" value="${temp_src}" />
+      <property name="built_dir" value="${tmp}/built" />
+      <property name="rjs_options_dir" value="${tmp}" />
+      <property name="input_node_externs" value="${input_node_externs_file}" />
+      <property name="input_externs" value="${input_externs_file}" />
+      <property name="input_logging_externs" value="${input_logging_externs_file}" />
+      <property name="library" value="nodejs" />
+      <property name="version" value="${current.version}" />
+      <property name="build" value="${current.build}" />
+      <property name="res" value="${res}" />
+      <property name="output_file" value="${lib_folder}/${orig_lib_name}" />
+    </ant>
+  </target>
+
+  <!--  oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooMANUAL OBFUSCATION OF PRIVATE CLASS NAMES-->
+  <target name="manual_obf" depends="compile_all">
+    <exec executable="node" dir="${res}" >
+      <arg value="node_auto_alias.js" />
+      <arg value="${lib_folder}/${orig_lib_name}" />
+      <arg value="./alias_conf.js" />
+      <!-- change prefix when cloning, in use at the time of writing are lsc, lsj and lsm -->
+      <arg value="lsm" />
+      <arg value="${lib_folder}/${all_lib_name}" />
+    </exec>
+  </target>
+
+  <!--  oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooGENERATE CUSTOM BUILDS-->
+  <target name="prepare_packagejson_npm" depends="manual_obf">
+    <copy file="${packagejson_template}" tofile="${packagejson_deploy}" overwrite="true" verbose="true" />
+    <copy file="${readme_template}" tofile="${readme_deploy}" overwrite="true" verbose="true" />
+
+    <replace file="${packagejson_deploy}">
+      <replacefilter token="VERSION_PLACEHOLDER" value="${current.version}" />
+      <replacefilter token="BRANDED_PRODUCT_NAME_PLACEHOLDER" value="${branded_product.name}" />
+      <replacefilter token="LIBRARY_NAME_PLACEHOLDER" value="${client_library.name}" />
+      <replacefilter token="HOME_PAGE_PLACEHOLDER" value="${product.homepage}" />
+    </replace>
+    <replace file="${readme_deploy}">
+      <replacefilter token="HOME_PAGE_PLACEHOLDER" value="${product.homepage}" />
+      <replacefilter token="VERSION_PLACEHOLDER" value="${current.version}" />
+      <replacefilter token="BRANDED_PRODUCT_NAME_PLACEHOLDER" value="${branded_product.name}" />
+      <replacefilter token="NODEJS_API_REFERENCE_PLACEHOLDER" value="${docs.nodejs_client.api_reference.url}/${current.version}/api/index.html" />
+      <replacefilter token="LIBRARY_NAME_PLACEHOLDER" value="${client_library.name}" />
+      <replacefilter token="NODEJS_CLIENT_DOWNLOAD_URL_PLACEHOLDER" value="${download.nodejs_client.url}" />
+      <replacefilter token="ONLINE_GUIDE_PLACEHOLDER" value="${docs.guide.url}" />
+
+      <!-- Compatibility section -->
+      <replacefilter token="SERVER_COMPATIBILITY_PLACEHOLDER" value="${compat.version}" />
+      <replacefilter token="LIGHTSTREAMER_SDK_PLACEHOLDER" value="${lighstreamer_sdk.compat.version}" />
+    </replace>
+  </target>
+
+  <target name="prepare_custom_libs" depends="prepare_packagejson_npm">
+    <copy file="${copyright_template.src}" tofile="${copyright_template}" overwrite="true" />
+    <replace file="${copyright_template}">
+      <replacefilter token="HOME_PAGE_PLACEHOLDER" value="${product.homepage}" />
+      <replacefilter token="BRANDED_PRODUCT_NAME_PLACEHOLDER" value="${branded_product.name}" />
+    </replace>
+
+    <!-- Concateniamo i due file -->
+    <concat destfile="${lib_folder}/${lib_name}.tmp" fixlastline="yes" eol="lf">
+      <fileset file="${node_client_bin}/${node_client_all_lib_name}" />
+      <fileset file="${lib_folder}/${all_lib_name}" />
+    </concat>
+
+    <!-- Generazione della versione UMD , che include la versione stripped-down del client LS + client MQTT-->
+    <mkdir dir="${lib_folder_npm}/dist" />
+    <exec executable="node" dir="${generator}" >
+      <arg value="node_generate_lib.js" />
+      <arg value="Node.js" />
+      <arg value="${lib_folder}/${lib_name}.tmp" />
+      <!-- libType -->
+      <arg value="UMD" />
+      <!-- include onefilerequire -->
+      <arg value="true" />
+      <!-- namespace -->
+      <arg value="false" />
+      <arg value="${copyright_template}" />
+      <arg value="${lib_folder_npm}/dist/${lib_name}" />
+      <arg value="Lightstreamer" />
+      <arg value="LightstreamerClient" />
+      <arg value="Subscription" />
+      <arg value="SimpleLoggerProvider" />
+      <arg value="LoggerManager" />
+      <arg value="BufferAppender" />
+      <arg value="ConsoleAppender" />
+      <arg value="FunctionAppender" />
+      <arg value="RemoteAppender" />
+      <arg value="LogMessages" />
+      <arg value="Environment" />
+      <arg value="Inheritance" />
+      <arg value="IllegalStateException" />
+      <!-- This avoids to include class ConnectionSharing and all relative dependencies -->
+      <arg value="ls_sbc@ls_sbc_alt" />
+      <!-- Add modules from MQTT.Cool library to be exported -->
+      <arg value="LightstreamerMQTT" />
+      <arg value="openSession" />
+      <arg value="Message" />
+      <arg value="DefaultStorage@DefaultStorage_node" />
+    </exec>
+
+    <!-- Generazione della versione UMD che esporta altri simboli, per essere utilizzati in fase di test-->
+    <exec executable="node" dir="${generator}" >
+      <arg value="node_generate_lib.js" />
+      <arg value="Node.js" />
+      <arg value="${lib_folder}/${lib_name}.tmp" />
+      <arg value="UMD" /><!-- libType -->
+      <arg value="true" /><!-- include onefilerequire -->
+      <arg value="false" /><!-- namespace -->
+      <arg value="${copyright_template}" />
+      <arg value="${test_lib_folder}/${test_lib_name}" />
+      <arg value="Lightstreamer" />
+      <arg value="LightstreamerClient" />
+      <arg value="Subscription" />
+      <arg value="SimpleLoggerProvider" />
+      <arg value="LoggerManager" />
+      <arg value="BufferAppender" />
+      <arg value="ConsoleAppender" />
+      <arg value="FunctionAppender" />
+      <arg value="RemoteAppender" />
+      <arg value="LogMessages" />
+      <arg value="Environment" />
+      <arg value="Inheritance" />
+      <arg value="IllegalStateException" />
+      <!-- This avoids to include class ConnectionSharing and all relative dependencies -->
+      <arg value="ls_sbc@ls_sbc_alt" />
+      <!-- Add modules from MQTT.Cool library to be exported -->
+      <arg value="LightstreamerMQTT" />
+      <arg value="openSession" />
+      <arg value="Message" />
+      <arg value="MqttClientImpl" />
+      <arg value="MqttConnectOptions" />
+      <arg value="MqttSubscribeOptions" />
+      <arg value="MqttUnsubscribeOptions" />
+      <arg value="MQTTCoolSessionImpl" />
+      <arg value="Objects" />
+      <arg value="Json" />
+      <arg value="Env" />
+      <arg value="Store" />
+      <arg value="DefaultStorage@DefaultStorage_node" />
+      <arg value="DefaultStorage" />
+    </exec>
+
+    <!-- Remove temporary file -->
+    <delete file="${lib_folder}/${lib_name}.tmp" />
+
+    <!-- Cancellazione del copyright template -->
+    <delete dir="${tmp_dist}" />
+  </target>
+
+  <target name="copyChangeLog" depends="prepare_custom_libs">
+    <copy file="${templates}/changelog/CHANGELOG_MASTER_NodeJs.md" toFile="${online_sdk}/CHANGELOG.md" />
+    <replace file="${online_sdk}/CHANGELOG.md">
+      <replacefilter token="SDK_VERSION" value="${current.version}" />
+      <replacefilter token="SDK_BUILD" value="${current.build}" />
+      <replacefilter token="SDK_DISTRIBUTION_DATE" value="${distribution_date}" />
+      <replacefilter token="VERSION_PLACEHOLDER" value="${current.version}" />
+      <replacefilter token="BRANDED_PRODUCT_NAME_PLACEHOLDER" value="${branded_product.name}" />
+      <replacefilter token="LIBRARY_NAME_PLACEHOLDER" value="${client_library.name}" />
+      <replacefilter token="HOME_PAGE_PLACEHOLDER" value="${product.homepage}" />
+      <replacefilter token="NODEJS_CLIENT_DOWNLOAD_URL_PLACEHOLDER" value="${download.nodejs_client.url}" />
+    </replace>
+  </target>
+
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooRUN TEST -->
+  <target name="ask_run_test" depends="copyChangeLog">
+    <input validargs="y,n," addproperty="execute_test" defaultvalue="n">
+Would you like to run unit tests?
+    </input>
+    <condition property="wanna_run_test">
+      <equals arg1="y" arg2="${execute_test}" />
+    </condition>
+  </target>
+
+  <target name="run_test" depends="ask_run_test" if="wanna_run_test">
+    <echo>Installing node modules for running Lightstreamer library</echo>
+    <antcall target="installNodeDep" inheritAll="true">
+      <param name="dir" value="${test_lib_folder}" />
+      <param name="module" value="faye-websocket" />
+    </antcall>
+
+    <antcall target="installNodeDep" inheritAll="true">
+      <param name="dir" value="${test_lib_folder}" />
+      <param name="module" value="xmlhttprequest-cookie" />
+    </antcall>
+
+    <echo>Running test without requirejs</echo>
+    <exec executable="node" dir="${test_folder}" >
+      <arg value="test.js" />
+    </exec>
+
+    <!--
+    <echo>Running test with requirejs</echo>
+    <exec executable="node" dir="${test_folder}" >
+      <arg value="test_require.js" />
+      <arg value="min" />
+    </exec>
+    -->
+
+    <input>Press OK when done</input>
+  </target>
+
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooDOCUMENTATION -->
+  <target name="ask_create_jsdocs" depends="run_test">
+    <input validargs="y,n," addproperty="create_jsdocs" defaultvalue="n">
+Would you like to update the API JSDocs?
+    </input>
+    <condition property="wanna_create_jsdocs">
+      <equals arg1="y" arg2="${create_jsdocs}" />
+    </condition>
+  </target>
+
+  <target name="jsdocs" depends="ask_create_jsdocs" if="wanna_create_jsdocs">
+    <ant antfile="${build_res}/build_jsdoc.xml" inheritAll="false">
+      <property name="template" value="mqtt.cool_template" />
+      <property name="temp_dir" value="${tmp}" />
+      <property name="output_externs" value="${externs_file}" />
+      <property name="input_dir" value="${temp_src}" />
+      <property name="product_home_page" value="${product.homepage}" />
+      <property name="branded_product_jsdoc_name" value="${docs.branded_javadoc_name}" />
+      <property name="product_jsdoc_name" value="${docs.javadoc_name}" />
+      <property name="product_library" value="${client_library.name}" />
+      <property name="product_guide_name" value="${docs.guide.name}" />
+      <property name="product_guide_url" value="${docs.guide.url}" />
+
+      <property name="doc_res" value="${doc_res}" />
+      <property name="library" value="Node.js" />
+      <property name="version" value="${current.version}" />
+      <property name="external.apidoc.reference" value="${external.apidoc.reference}" />
+      <property name="jsdoc.version" value="3.4.0" />
+    </ant>
+
+    <copy toDir="${online_sdk}/api" overwrite="true">
+      <fileset dir="${tmp}/temp_docs" />
+    </copy>
+  </target>
+
+  <!-- ooooooooooooooooooooooooooooooooooooooooooooooooooooooooo FINALIZE -->
+  <target name="clean" depends="jsdocs">
+    <delete dir="${tmp}" />
+  </target>
+
+  <target name="check-in" depends="clean">
+    <property name="message" value="${current.version} build ${current.build}" />
+
+    <input>
+Finished updating under
+${basedir}
+
+Check that nothing went wrong and that all changes are under
+${dist}
+
+Then manually commit the changes to the above directory with message:
+Release ${message}
+
+If necessary, interrupt here;
+otherwise, press Enter to continue.
+    </input>
+
+  </target>
+
+  <target name="dist" depends="check-in">
+    <echo>
+Build completed successfully.
+
+For now, the deploy is to be done manually by obeying the following instructions:
+
+1. Send the library to npm (https://npmjs.org/package/${client_library.name}-nodejs-client) by issuing:
+
+   "npm publish" from the "npm" subdirectory (ensure that the local npm is logged with the lightstreamer credentials)
+
+2. Upload the online SDK resources to to Amzon S3:
+
+   - API Docs:
+     deploy/online_sdk/api -> mqtt.cool-site/nodejs-client-sdk/${current.version}/api
+
+   - Changelog:
+     deploy/online_sdk/CHANGELOG.md -> mqtt.cool-site/nodejs-client-sdk/${current.version}/CHANGELOG.md
+
+3. Update URL redirects for the latest documentation, by acting manually in:
+
+   Open the settings of the Redirects plugin hosted on WordPress and locate the following Source URL:
+   "/docs/nodejs-client-sdk/api/(.*)""
+
+   Then, update its Target URL with the following new value:
+   "/docs/nodejs-client-sdk/${current.version}/api/$1"
+    </echo>
+  </target>
+
+</project>

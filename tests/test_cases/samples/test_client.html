@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<!--
+
+  Copyright 2015 Weswit s.r.l.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<html>
+
+<head>
+	<title>Lightstreamer MQTT Extender Wbe Client Test</title>
+	<style>
+		body {
+			font-size: 0.9em;
+			font-family: sans-serif;
+		}
+
+		.title {
+			text-align: center;
+		}
+
+		#gui {
+			width: 100%;
+			//border: 1px solid blue;
+			margin: auto;
+		}
+
+		.row {
+			display: inline-block;
+			width: 100%;
+			max-height: 90px;
+			//margin: 2px;
+			//border: 1px solid yellow;
+		}
+
+		.cell {
+			display: inline;
+			float: left;
+			margin-bottom: 5px;
+			margin-top: 5px;
+			padding: 15px;
+			font-size: 1.2em;
+			display: inline;
+		}
+
+		.inputField {
+			margin: 0px;
+			display: block;
+		}
+
+		.dijitInline {
+			display: block
+		}
+
+		#connection {
+			width: 100%;
+			margin-bottom: 10px;
+			overflow: auto;
+			//border: 1px solid red;
+		}
+
+		#publishPane {
+			width: 54%;
+			float: left;
+			display: inline;
+			margin-right: 5px;
+			overflow: auto;
+			height: 280px;
+			//border: 1px solid red;
+		}
+
+		#sentMessagesPane {
+			width: 45%;
+			height: 280px;
+			//float: right;
+			//display: inline;
+			//margin-left: 5px;
+		}
+
+		* #subscriptionPane {
+			width: 54%;
+			margin: auto;
+		}
+	</style>
+	<script>
+		var dojoConfig = {
+		async : true,
+		baseUrl : 'js',
+		parseOnLoad: true,
+		packages : [ { name:'Lightstreamer', location: location.pathname}]
+	};
+
+	</script>
+
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/dojo/1.10.3/dijit/themes/claro/claro.css" media="screen">
+	<!--
+<script src="require.js"></script>
+-->
+	<script src="http://ajax.googleapis.com/ajax/libs/dojo/1.10.3/dojo/dojo.js"></script>
+	<!--
+<script type="text/javascript" src="../import/web_client_bin/lib/lightstreamer.js"></script>
+<script type="text/javascript" src="../source/LightstreamerMQTT.js"></script>
+<script type="text/javascript" src="../source/MQTTExtender.js"></script>
+<script type="text/javascript" src="../source/Message.js"></script>
+-->
+
+
+	<!-- load Lightstreamer library -->
+	<!-- -->
+	<script type="text/javascript" src="../deploy/lib/lightstreamer-mqtt.js"></script>
+	<script type="text/javascript" src="client.js"></script>
+</head>
+
+<body class="claro">
+
+	<div class="title">
+		<h1>Lightstreamer MQTT Extender Web Client Test</h1>
+	</div>
+
+	<div id="content" style="width:1100px; margin:auto">
+
+		<div id="gui">
+			<div id="connection" data-dojo-type="dijit/TitlePane" data-dojo-props="title:'Connection Parameters'">
+				<div data-dojo-type="dijit/form/Form" data-dojo-id="connectionForm" id="connectionForm">
+
+					<div class="row">
+						<div class="cell">
+							<label for="brokerAddressOrAlias">Broker Address (or Broker Alias)</label>
+							<input id="brokerAddressOrAlias" class="inputField" data-dojo-type="dijit/form/ValidationTextBox" value="default" required="true"
+								data-dojo-id="brokerAddressOrAlias"></input>
+						</div>
+
+						<div class="cell">
+							<label for="clientId">Client ID</label>
+							<input id="clientId" data-dojo-type="dijit/form/ValidationTextBox" class="inputField" required="false" promptMessage="The ClientID"
+								data-dojo-id="clientId"></input>
+						</div>
+
+						<div class="cell">
+							<label for="mqttVersion">MQTT Version</label>
+							<div class="inputField">
+								<select id="mqttVersion" name="mqttVersion" data-dojo-type="dijit/form/Select" style="width: 80px;" data-dojo-id="mqttVersion">
+				    				<option value="3">3.1</option>
+				    				<option value="4">3.1.1</option>
+				    			</select>
+							</div>
+						</div>
+
+						<div class="cell">
+							<button style="margin-top: 17px;" data-dojo-type="dijit/form/Button" type="button" data-dojo-props="onClick:connect" data-dojo-id="connectBtn">Connect</button>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="cell">
+							<label for="userName">Username</label>
+							<input data-dojo-type="dijit/form/ValidationTextBox" class="inputField" id="userName" required="false" data-dojo-id="userName"></input>
+						</div>
+
+						<div class="cell">
+							<label for="password">Password</label>
+							<input data-dojo-type="dijit/form/ValidationTextBox" class="inputField" id="password" required="false" data-dojo-id="password"></input>
+						</div>
+						<!--
+						<div class="cell">
+							<label for="keepAlive">Keep Alive</label>
+							<input data-dojo-type="dijit/form/ValidationTextBox" class="inputField" style="width: 50px" required="false" id="keepAlive" data-dojo-id="keepAlive"></input>
+						</div>
+						<div class="cell">
+							<label for="timeout">Timeout</label>
+							<input data-dojo-type="dijit/form/ValidationTextBox" class="inputField" style="width: 50px" required="false" id="timeout" data-dojo-id="timeout"></input>
+						</div>
+						 -->
+						<div class="cell">
+							<label for="cleanSession">Clean Session</label>
+							<div class="inputField">
+								<input id="cleanSession" data-dojo-type="dijit/form/CheckBox" value="true" checked data-dojo-id="cleanSession" />
+							</div>
+						</div>
+
+					</div>
+
+					<div class="row">
+						<div class="cell">
+							<label for="lwt">Last Will Topic</label>
+							<input data-dojo-type="dijit/form/ValidationTextBox" class="inputField" id="lwt" style="width: 300px;" data-dojo-id="lwt"
+								missingMessage="Please specify a topic"></input>
+						</div>
+						<div class="cell">
+							<label for="lwQos">Last Will QoS</label>
+							<div class="inputField">
+								<select id="lwQos" name="QoS" data-dojo-type="dijit/form/Select" style="width: 60px;" data-dojo-id="lwQos">
+				    				<option value="0">0</option>
+				    				<option value="1">1</option>
+				    				<option value="2">2</option>
+				    			</select>
+							</div>
+						</div>
+						<div class="cell">
+							<label for="lwr">Last Will Retain</label>
+							<div class="inputField">
+								<input id="lastWillRetain" data-dojo-type="dijit/form/CheckBox" value="clean" data-dojo-id="lwr" />
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="cell" style="width: 90%">
+							<label for="lwm">Last Will Message</label>
+							<textarea class="inputField" data-dojo-type="dijit/form/Textarea" style="width: 100%; max-height: 80px; overflow: auto; resize: none"
+								id="lwm" data-dojo-id="lwm"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="publishPane" data-dojo-id="publishPane" data-dojo-type="dijit/TitlePane" data-dojo-props="title:'Publish', open : false">
+				<div data-dojo-type="dijit/form/Form" data-dojo-id="publishForm" id="publishForm">
+					<div class="row">
+						<div class="cell">
+							<label for="topic">Topic</label>
+							<input data-dojo-type="dijit/form/ValidationTextBox" class="inputField" style="width: 150px;" data-dojo-id="topic" class="inputField"
+								required="true" missingMessage="Specify a valid topic"></input>
+						</div>
+
+						<div class="cell">
+							<label for="pubQos">QoS</label>
+							<div class="inputField">
+								<select name="QoS" data-dojo-type="dijit/form/Select" style="width: 60px;" data-dojo-id="pubQos" id="pubQos">
+				    				<option value="0">0</option>
+				    				<option value="1">1</option>
+				    				<option value="2">2</option>
+				    			</select>
+							</div>
+						</div>
+
+						<div class="cell">
+							<label for="pubRetaind">Retain</label>
+							<div class="inputField">
+								<input id="pubRetain" data-dojo-type="dijit/form/CheckBox" data-dojo-id="pubRetain" id="pubRetain" />
+							</div>
+						</div>
+
+						<div class="cell">
+							<button data-dojo-type="dijit/form/Button" style="margin-top: 17px; float: right;" type="button" data-dojo-props="disabled:true, onClick:publish"
+								data-dojo-id="publishBtn">Publish</button>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="cell" style="width: 90%">
+							<label for="payload">Message</label>
+							<textarea class="inputField" data-dojo-type="dijit/form/Textarea" style="width: 100%; max-height: 80px; overflow: auto; resize: none"
+								id="payload" data-dojo-id="payload"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="sentMessagesPane" data-dojo-type="dijit/TitlePane" data-dojo-id="sentMessagesPane" data-dojo-props="title:'Sent Messages', open : false">
+				<div id="sentMessagesList" style="overflow: auto; height: 100px"></div>
+				<button data-dojo-type="dijit/form/Button" type="button" data-dojo-props="disabled:true, onClick:clearSentMessages" data-dojo-id="clearSentMsgBtn">Clear</button>
+			</div>
+
+			<div id="receivedMessagesPane" data-dojo-type="dijit/TitlePane" data-dojo-id="receivedMessagesPane" data-dojo-props="title:'Received Messages', open : false">
+				<div id="receivedMessagesList" style="overflow: auto; height: 100px"></div>
+				<button data-dojo-type="dijit/form/Button" type="button" data-dojo-props="disabled:true, onClick:clearReceivedMessages" data-dojo-id="clearReceivedMsgBtn">Clear</button>
+			</div>
+
+
+			<div id="subscriptionPane" data-dojo-type="dijit/TitlePane" data-dojo-props="title:'Subscriptions'">
+				<div id="subscriptionsList" style="overflow: auto; height: 100px"></div>
+				<div class="row">
+					<button data-dojo-type="dijit/form/Button" style="float: right;" type="button">Add New Subscription
+						<script type="dojo/on" data-dojo-event="click" data-dojo-args="evt">
+            					subcriptionDialog.show();
+    						</script>
+   					</button>
+				</div>
+			</div>
+
+			<!-- New Subscription Dialog -->
+			<div class="dijitHidden">
+				<div data-dojo-type="dijit/Dialog" class="dialog" data-dojo-id="subcriptionDialog" , data-dojo-props="closable:true, title:'New Subscription'">
+					<div data-dojo-type="dijit/form/Form" data-dojo-id="subscribeForm" id="subscribeForm">
+						<div class="row">
+							<div class="cell">
+								<label for="topic">Topic</label>
+								<input data-dojo-type="dijit/form/ValidationTextBox" class="inputField" data-dojo-id="subscribedTopicFilter" class="inputField"
+									required="true"></input>
+							</div>
+
+							<div class="cell">
+								<label for="qos">QoS</label>
+								<div class="inputField">
+									<select name="QoS" data-dojo-type="dijit/form/Select" id="subQos" data-dojo-id="subQos" style="width: 60px;">
+					    				<option value="0">0</option>
+					    				<option value="1">1</option>
+					    				<option value="2">2</option>
+					    			</select>
+								</div>
+							</div>
+
+							<div class="cell">
+								<button data-dojo-type="dijit/form/Button" style="margin-top: 17px; float: right;" data-dojo-id="subscribeBtn" data-dojo-props="onClick:subscribe"
+									type="button">Subscribe</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!--  End of "connection" -->
+		</div>
+
+		<!--  End of "gui" -->
+	</div>
+
+	<!-- Confirm Upgrade Dialog -->
+	<div class="dijitHidden">
+		<div data-dojo-type="dijit/Dialog" class="dialog" data-dojo-id="dialog" data-dojo-props="closable:false, title:'Message'">
+			<div id="dialogMessage" class="dialogMessage"></div>
+			<div class="dijitDialogPaneActionBar">
+				<button data-dojo-type="dijit.form.Button" type="button" data-dojo-props='onClick: function() { dialog.hide(); }'>OK</button>
+			</div>
+		</div>
+	</div>
+	</div>
+</body>
+
+</html>

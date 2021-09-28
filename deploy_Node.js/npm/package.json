@@ -1,0 +1,40 @@
+{
+  "name": "mqtt.cool-node-client",
+  "version": "1.2.5",
+  "description": "JavaScript library for the development of MQTT.Cool clients running on the Node.js runtime",
+  "keywords": [
+    "mqtt.cool",
+    "mqtt",
+    "cool",
+    "push",
+    "realtime",
+    "real-time",
+    "message",
+    "websocket"
+  ],
+
+  "homepage": "https://mqtt.cool",
+
+  "bugs": {
+    "url" : "https://mqtt.cool/forum/client-apis/",
+    "email" : "support@lightstreamer.com"
+  },
+
+  "author": {
+    "name" : "Lightstreamer Srl",
+    "email" : "support@lightstreamer.com"
+  },
+
+  "files": ["README.md","dist"],
+
+  "main": "dist/mqtt.cool.js",
+
+  "engines": [
+    "node"
+  ],
+
+  "dependencies": {
+    "faye-websocket": "^0.11.0",
+    "xmlhttprequest-cookie": "^0.9.4"
+  }
+}

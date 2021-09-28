@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+  <project name="jsdoc-js" default="do-docs" basedir=".">
+
+  <property environment="env" />
+  <import file="commons.xml" />
+
+  <property name="jsdoc_output" location="${temp_dir}/temp_docs" />
+
+  <property name="jsdoc.cmd" location="${temp_dir}/node_modules/.bin/jsdoc.cmd" />
+  <property name="conf_file" location="${doc_res}/jsdoc3.json" />
+  <property name="summary_file_name" value="jsdoc_summary_${library}.html" />
+  <property name="summary_file" location="${doc_res}/${summary_file_name}" />
+  <property name="temp_summary_file" location="${temp_dir}/temp_summary/${summary_file_name}" />
+  <property name="logo_file_name" value="logo.svg" />
+  <property name="logo_file" location="${doc_res}/${logo_file_name}" />
+  <property name="custom_conf_file" location="${temp_dir}/tempjsconf.json" />
+
+  <target name="init">
+    <echo message="Init..." />
+    <condition property="jsdoc.installed">
+      <available file="${jsdoc.cmd}" />
+    </condition>
+    <echo message="Property jsdoc.installed: ${jsdoc.installed}" />
+  </target>
+
+  <target name="fix-js" depends="init">
+    <echo>Replacing token [EXTERNAL_APIDOC_REFERENCE] with ${external.apidoc.reference}</echo>
+    <replace dir="${input_dir}" token="EXTERNAL_APIDOC_REFERENCE" value="${external.apidoc.reference}" />
+
+    <replaceregexp match="START_${library}_JSDOC_EXCLUDE(.*?)END_${library}_JSDOC_EXCLUDE" replace="" flags="gs">
+      <fileset dir="${input_dir}">
+        <include name="*.js" />
+      </fileset>
+    </replaceregexp>
+
+    <!--Remove remaining EXCLUDE tokens relative to the other library -->
+    <replaceregexp match="(START_(.*?)_EXCLUDE|END_(.*?)_EXCLUDE)" replace="" flags="gs" byline="false">
+      <fileset dir="${input_dir}">
+        <include name="*.js" />
+      </fileset>
+    </replaceregexp>
+
+  </target>
+
+  <target name="deps" depends="fix-js" unless="jsdoc.installed">
+    <antcall target="installNodeDep" inheritAll="true" >
+      <param name="dir" location="${temp_dir}" />
+      <param name="module" value="jsdoc@${jsdoc.version}" />
+    </antcall>
+    <copy toDir="${temp_dir}/${template}">
+      <fileset dir="${doc_res}/${template}" />
+    </copy>
+  </target>
+
+  <target name="do-docs" depends="deps">
+    <!-- Replace the product name -->
+    <copy file="${summary_file}" tofile="${temp_summary_file}" />
+    <replace file="${temp_summary_file}" token="PRODUCT_JSNAME_PLACEHOLDER" value="${product_jsdoc_name}" />
+    <replace file="${temp_summary_file}" token="LIBRARY_NAME_PLACEHOLDER" value="${product_library}" />
+    <replace file="${temp_summary_file}" token="GUIDE_NAME_PLACEHOLDER" value="${product_guide_name}" />
+    <replace file="${temp_summary_file}" token="ONLINE_GUIDE_PLACEHOLDER" value="${product_guide_url}" />
+
+    <!-- convert \ into \\ to place the value in a javascript string -->
+    <echo message="${temp_summary_file}" file="${temp_dir}/replace.tmp.file1" />
+    <replace file="${temp_dir}/replace.tmp.file1" token="\" value="\\" />
+    <loadfile property="summary_file_quote" srcFile="${temp_dir}/replace.tmp.file1" />
+
+    <echo message="${logo_file_name}" file="${temp_dir}/replace.tmp.file2" />
+    <replace file="${temp_dir}/replace.tmp.file2" token="\" value="\\" />
+    <loadfile property="logo_file_quote" srcFile="${temp_dir}/replace.tmp.file2" />
+
+    <copy file="${conf_file}" tofile="${custom_conf_file}" />
+    <replace file="${custom_conf_file}" token="HOME_PAGE_PLACEHOLDER" value="${product_home_page}" />
+    <replace file="${custom_conf_file}" token="__SUMMARY_FILE__" value="${summary_file_quote}" />
+    <replace file="${custom_conf_file}" token="__LIBRARY_NAME__" value="${branded_product_jsdoc_name} ${library} Client ${version} API Reference" />
+    <replace file="${custom_conf_file}" token="__FOOTER_NAME__" value="${branded_product_jsdoc_name} ${library} Client ${version} API Reference" />
+    <replace file="${custom_conf_file}" token="__LOGO_FILE__" value="${logo_file_quote}" />
+
+    <!--WINDOWS VERSION-->
+    <exec executable="${jsdoc.cmd}" dir="${doc_res}" osfamily="windows" >
+      <arg value="-r" />
+      <arg value="-t" />
+      <arg value="${temp_dir}/${template}" />
+      <arg value="-d" />
+      <arg file="${jsdoc_output}" />
+      <arg value="-c" />
+      <arg value="${custom_conf_file}" />
+      <arg value="${input_dir}" />
+    </exec>
+
+    <!-- UNIX VERSION -->
+    <exec executable="${doc_res}/jsdoc" osfamily="unix">
+      <arg value="-r" />
+      <arg value="-t" />
+      <arg value="${template}" />
+      <arg value="-d" />
+      <arg file="${jsdoc_output}" />
+      <arg value="-c" />
+      <arg value="${custom_conf_file}" />
+      <arg value="${input_dir}" />
+    </exec>
+
+    <copy file="${jsdoc_output}/externs.js" tofile="${output_externs}" />
+    <copy file="${logo_file}" toDir="${jsdoc_output}" />
+
+  </target>
+
+</project>

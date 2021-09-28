@@ -1,0 +1,33 @@
+.suite_description {
+  font-style: italic;
+  display: inline
+}
+
+.suite_result {
+  display: inline;
+  padding: 10px;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.test_container {
+  margin-left: 20px;
+}
+
+.test_comment {
+  display: inline;
+  padding: 10px;
+}
+
+.test_result {
+  display: inline;
+  padding: 10px;
+}
+
+.ok {
+  color: green;
+}
+
+.failure {
+  color:red;
+}

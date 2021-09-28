@@ -1,0 +1,59 @@
+This JavaScript library enables any JavaScript application running in Node.js to connect to any MQTT broker via PRODUCT_JSNAME_PLACEHOLDER. A different library, specific for web browser, is also available.
+
+<p>The library is designed to be formally equivalent to the {@link https://www.eclipse.org/paho/clients/js/|Eclipse Paho JavaScript Client} as
+  much as possible, even if some differences still apply, especially for what concerns the usage of namespaces and the way a connection to the broker is established.
+
+<p>
+Following is an example showing some basic operations, such as getting a connection,
+subscribing to a topic and publishing a message:
+
+<pre>
+const mqttcool = require("LIBRARY_NAME_PLACEHOLDER-node-client");
+const Message = mqttcool.Message;
+
+// Connect to the PRODUCT_JSNAME_PLACEHOLDER server hosted at 'my.push.server' and listening on tcp port 8080.
+mqttcool.openSession('http://my.PRODUCT_JSNAME_PLACEHOLDER.server:8080', 'my_user', 'my_password', {
+
+  onConnectionSuccess: function(mqttCoolSession) {
+
+    // Get a client instance, which will connect to the MQTT broker mapped by
+    // the alias "my_mqtt_broker" using the clientId 'my_client_id'.
+    var client = mqttCoolSession.createClient('my_mqtt_broker', 'my_client_id');
+
+    // Set function callbacks.
+    client.onConnectionLost = onConnectionLost;
+    client.onMessageArrived = onMessageArrived;
+
+    // Connect to the MQTT broker.
+    client.connect( { onSuccess: onConnect } );
+
+    // Called when the connection has been successfully acknowledged.
+    function onConnect() {
+      console.log("onConnect");
+      // Subscribe to the topic '/World'
+      client.subscribe("/World");
+
+      // Publish the message 'Hello' to the topic '/World'.
+      message = new Message("Hello");
+      message.destinationName = "/World";
+      client.send(message);
+    }
+
+    // Called when the client loses its connection.
+    function onConnectionLost(responseObject) {
+      if (responseObject.errorCode !== 0) {
+        console.log("onConnectionLost:" + responseObject.errorMessage);
+      }
+    }
+
+    // Called upon receiving a message.
+    function onMessageArrived(message) {
+      console.log("onMessageArrived:" + message.payloadString);
+    }
+  }
+});
+</pre>
+
+<p>
+To learn more about client application development, please refer to the <a href="ONLINE_GUIDE_PLACEHOLDER">dedicated section</a> of the <i>GUIDE_NAME_PLACEHOLDER</i>.
+

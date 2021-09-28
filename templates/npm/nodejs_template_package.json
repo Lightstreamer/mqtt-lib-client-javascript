@@ -1,0 +1,40 @@
+{
+  "name": "LIBRARY_NAME_PLACEHOLDER-node-client",
+  "version": "VERSION_PLACEHOLDER",
+  "description": "JavaScript library for the development of BRANDED_PRODUCT_NAME_PLACEHOLDER clients running on the Node.js runtime",
+  "keywords": [
+    "mqtt.cool",
+    "mqtt",
+    "cool",
+    "push",
+    "realtime",
+    "real-time",
+    "message",
+    "websocket"
+  ],
+
+  "homepage": "HOME_PAGE_PLACEHOLDER",
+
+  "bugs": {
+    "url" : "HOME_PAGE_PLACEHOLDER/forum/client-apis/",
+    "email" : "support@lightstreamer.com"
+  },
+
+  "author": {
+    "name" : "Lightstreamer Srl",
+    "email" : "support@lightstreamer.com"
+  },
+
+  "files": ["README.md","dist"],
+
+  "main": "dist/LIBRARY_NAME_PLACEHOLDER.js",
+
+  "engines": [
+    "node"
+  ],
+
+  "dependencies": {
+    "faye-websocket": "^0.11.0",
+    "xmlhttprequest-cookie": "^0.9.4"
+  }
+}

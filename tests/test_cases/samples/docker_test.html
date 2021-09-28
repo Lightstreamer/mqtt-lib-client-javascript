@@ -1,0 +1,19 @@
+<html>
+
+<head>
+  <script type="text/javascript" src="require.js"></script>
+  <script type="text/javascript">
+    require(['docker'], function(Docker) {
+      var docker = new Docker('192.168.99.101:2376', 'http://192.168.99.101:8080');
+      //docker.startContainer('mqtt');
+      docker.listImages();
+      docker.pingService(10000, function() { console.log('Ping!')});
+    });
+
+  </script>
+
+  <script type="text/javascript" src="docker.js"></script>
+</head>
+
+
+</html>

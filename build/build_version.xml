@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="LightstreamerJSMQTTClient-version" default="build-number" basedir=".">
+
+  <property environment="env" />
+  <import file="${env.ANT_EXTENSIONS}/scripts/projects_base.xml" />
+
+  <target name="check_version">
+    <!-- Aggiorna il numero di versione -->
+    <antcall target="checkVersionChange">
+      <param name="version_file" value="${folder}/version.number" />
+    </antcall>
+  </target>
+
+  <target name="check_interface_version" depends="check_version">
+    <!-- Aggiorna la compatibilita' delle interfacce -->
+
+    <antcall target="checkCompatibility">
+      <param name="compat_file" value="${folder}/adapter_compatibility_version.number" />
+      <param name="newProduct" value="library" />
+      <param name="dependency" value="Lightstreamer MQTT Extender Adapter" />
+    </antcall>
+  </target>
+
+  <target name="build-number" depends="check_interface_version">
+    <antcall target="incBuild">
+      <param name="master_build_file" value="${folder}/VSS.build.number" />
+      <param name="build_file" value="${folder}/build.number" />
+    </antcall>
+  </target>
+
+</project>

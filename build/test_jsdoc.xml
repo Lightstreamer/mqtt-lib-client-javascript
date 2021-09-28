@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="jsdoc-js" default="jsdocs" basedir=".">
+
+  <property name="src" location="../source" />
+  <property name="doc_res" location="../templates/jsdoc" />
+  <property name="tmp" location="../tmp" />
+  <property name="temp_src" location="${tmp}/temp_src" />
+  <property name="online_sdk" location="../deploy_${library}/online_sdk" />
+  <loadfile property="version" srcFile="../deploy_${library}/version_res/version.number" />
+
+  <target name="jsdocs">
+    <delete dir="${tmp}" />
+    <mkdir dir="${tmp}" />
+
+    <loadfile property="external.apidoc.reference" srcFile="../deploy_${library}/version_res/external_apidoc_reference" />
+    <loadproperties srcFile="PRODUCT.info" />
+
+    <mkdir dir="${temp_src}" />
+    <copy toDir="${temp_src}">
+      <fileset dir="${src}">
+        <include name="**/*.js" />
+      </fileset>
+    </copy>
+    <echo>Replacing token [BRANDED_PRODUCT_JSNAME_PLACEHOLDER] with ${docs.branded_javadoc_name}</echo>
+    <replace dir="${temp_src}" token="BRANDED_PRODUCT_JSNAME_PLACEHOLDER" value="${docs.branded_javadoc_name}" summary="yes" />
+
+    <echo>Replacing token [PRODUCT_JSNAME_PLACEHOLDER] with ${docs.javadoc_name}</echo>
+    <replace dir="${temp_src}" token="PRODUCT_JSNAME_PLACEHOLDER" value="${docs.javadoc_name}" summary="yes" />
+
+    <ant antfile="build_jsdoc.xml" inheritAll="false">
+      <property name="template" value="mqtt.cool_template" />
+      <property name="temp_dir" value="${tmp}" />
+      <property name="output_externs" value="${tmp}/${client_library.name}-estexterns.js" />
+      <property name="input_dir" location="${temp_src}" />
+      <property name="product_home_page" value="${product.homepage}" />
+      <property name="branded_product_jsdoc_name" value="${docs.branded_javadoc_name}" />
+      <property name="product_jsdoc_name" value="${docs.javadoc_name}" />
+      <property name="product_library" value="${client_library.name}" />
+      <property name="product_guide_name" value="${docs.guide.name}" />
+      <property name="product_guide_url" value="${docs.guide.url}" />
+      <property name="doc_res" value="${doc_res}" />
+      <property name="library" value="${library}" />
+      <property name="jsdoc.version" value="3.4.0" />
+      <property name="version" value="${version}" />
+      <property name="external.apidoc.reference" value="${external.apidoc.reference}" />
+    </ant>
+
+    <copy toDir="${online_sdk}/api" overwrite="true">
+      <fileset dir="${tmp}/temp_docs" />
+    </copy>
+
+    <delete dir="${tmp}" />
+  </target>
+
+</project>

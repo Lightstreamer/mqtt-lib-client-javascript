@@ -1,0 +1,58 @@
+<html>
+
+<head>
+  <script type="text/javascript" src="require.js"></script>
+
+  <script type="text/javascript" src="../import/web_client_bin/lib/lightstreamer_all.js"></script>
+
+
+  <script type="text/javascript">
+
+    require(['../source/MQTTExtender', '../source/MQTTExtenderSession', '../source/Message'], function(MQTTExtender, MQTTExtenderSession, Message) {
+
+      MQTTExtender.connect('http://localhost:8080', 'user', 'password', {
+
+        onConnectionSuccess: function(mqttExtenderSession) {
+
+          // Get a client instance, which will connect to the MQTT broker
+          // mapped by the alias "default".
+          var client = mqttExtenderSession.createClient('default', 'my_client_id');
+
+          // Set function callbacks.
+          client.onConnectionLost = onConnectionLost;
+          client.onMessageArrived = onMessageArrived;
+
+          // Connect to the MQTT broker.
+          client.connect( { onSuccess: onConnect } );
+
+          // Called when the connection has been succesful acknowledged.
+          function onConnect() {
+            console.log("onConnect");
+            // Subscribe to the topic '/World'
+            client.subscribe("/World");
+
+            // Publish the message 'Hello' to the topic '/World'.
+            message = new Message("Hello");
+            message.destinationName = "/World";
+            client.send(message);
+          }
+
+          // Called when the client loses its connection.
+          function onConnectionLost(responseObject) {
+            if (responseObject.errorCode !== 0) {
+              console.log("onConnectionLost:" + responseObject.errorMessage);
+            }
+          }
+
+          // Called upon receiving a message.
+          function onMessageArrived(message) {
+            console.log("onMessageArrived:" + message.payloadString);
+          }
+        }
+      });
+    });
+  </script>
+
+</head>
+
+</html>

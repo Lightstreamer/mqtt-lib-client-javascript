@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="Common Tasks">
+  <description>Common tasks used for building MQTT Cool Web and Node.js Client SDK</description>
+
+  <target name="reportEmbeddedVersion">
+        <loadfile property="embedded_version" srcFile="${version_file}" />
+        <loadfile property="embedded_build" srcFile="${build_file}" />
+        <input>
+The build will embed ${dependency} version ${embedded_version} build ${embedded_build}.
+
+Warning! If the embedded version has changed,
+remember that the changelog of the embedded SDK must be merged in the current changelog.
+
+Press Enter to confirm.
+        </input>
+    <echo file="${report_file}">Based on ${dependency} version ${embedded_version} build ${embedded_build}</echo>
+  </target>
+
+  <target name="installNodeDep">
+    <echo>Installing ${module}</echo>
+
+    <exec executable="cmd" dir="${dir}" osfamily="windows">
+      <arg value="/c" />
+      <arg value="npm" />
+      <arg value="install" />
+      <arg value="${module}" />
+    </exec>
+
+    <exec executable="npm" dir="${dir}" osfamily="unix">
+      <arg value="install" />
+      <arg value="${module}" />
+    </exec>
+  </target>
+
+</project>

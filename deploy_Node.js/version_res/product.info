@@ -1,0 +1,262 @@
+####################################### GENERAL #######################################
+
+# The branded product name
+# BRANDED_PRODUCT_NAME_PLACEHOLDER
+branded_product.name=MQTT.Cool
+
+# UPPERCASE_BRANDED_PRODUCT_NAME_PLACEHOLDER
+uppercase_branded_product.name=MQTT.COOL
+
+# The product name.
+# PRODUCT_NAME_PLACEHOLDER
+product.name=MQTT.Cool
+
+# The lowercase product name.
+# LOWER_CASE_PRODUCT_NAME_PLACEHOLDER
+product.name.lowercase=mqtt.cool
+
+# The product home page.
+# HOME_PAGE_PLACEHOLDER
+product.homepage=https://mqtt.cool
+
+# The symbolic product installation path to be expanded into other files.
+product.installation_path.name=MQTT.COOL_HOME
+
+# The tag prefix to be expanded into the configuration and launch files.
+product.tag_prefix=mqtt.cool
+
+# The client id prefix to be expanded into the configuration files and referenced in the source code.
+# MQTT_CLIENT_ID_PREFIX_PLACEHOLDER
+product.mqtt_client_id_prefix=MQTT_Cool
+
+####################################### DOCUMENTATION #######################################
+
+# The url of the docs section on the MQTT.Cool site.
+# DOCS_LINK_PLACEHOLDER
+docs.url=${product.homepage}/docs
+
+# The url to the docs alias of the the MQTT.Cool site.
+docs.direct.url=https://docs.mqtt.cool
+
+# The url to the server guides
+# SERVER_GUIDES_PLACEHOLDER
+docs.guides.url=${docs.direct.url}/server/guides
+
+# The name of Getting Started Guide documentation
+# GUIDE_NAME_PLACEHOLDER
+docs.guide.name=MQTT.Cool Getting Started Guide
+
+# The url of the online Getting Started Guide documentation
+# ONLINE_GUIDE_PLACEHOLDER
+docs.guide.url=${docs.guides.url}/MQTT.Cool+Getting+Started+Guide.html
+
+# The url suffix of the Web API reference
+# WEB_API_REFERENCE_PLACEHOLDER_SUFFIX
+docs.web_client.api_reference.url=${docs.direct.url}/web-client-sdk
+
+# The url suffix of the Node.js API reference
+# NODEJS_API_REFERENCE_PLACEHOLDER_SUFFIX
+docs.nodejs_client.api_reference.url=${docs.direct.url}/nodejs-client-sdk
+
+# The url suffix of the Hook API reference.
+# HOOK_API_REFERENCE_PLACEHOLDER_SUFFIX
+docs.hook.api_reference.url=${docs.direct.url}/hook-sdk
+
+# The url suffix of the JMX API reference.
+# JMX_API_REFERENCE_PLACEHOLDER_SUFFIX
+docs.jmx.api_reference.url=${docs.direct.url}/jmx-sdk
+
+# The branded product name to be expanded into the JSDOC and JAVADOC documentation.
+docs.branded_javadoc_name=MQTT&#46;Cool
+
+# The product name to be expanded into the JSDOC and JAVADOC documentation.
+docs.javadoc_name=MQTT&#46;Cool
+
+# The symbolic product installation path to be expanded into the JSDOC and JAVADOC documentation.
+product.installation_path.javadoc_name=MQTT&#46;COOL_HOME
+
+####################################### DOWNLOAD #######################################
+
+# The url of the download section on the MQTT.Cool site.
+# DOWNLOAD_LINK_PLACEHOLDER
+download.url=${product.homepage}/download
+
+# The url of the Web Client SDK download page
+# WEB_CLIENT_DOWNLOAD_URL_PLACEHOLDER
+download.web_client.url=${download.url}/web-client-sdk-latest/
+
+# The url of the Node.js Client SDK download page
+# NODEJS_CLIENT_DOWNLOAD_URL_PLACEHOLDER
+download.nodejs_client.url=${download.url}/nodejs-client-sdk-latest/
+
+# The url of the Hook SDK download page
+# HOOK_DOWNLOAD_URL_PLACEHOLDER
+download.hook.url=${download.url}/hook-sdk-latest/
+
+# The url of the JMX SDK download page
+# JMX_DOWNLOAD_URL_PLACEHOLDER
+download.jmx.url=${download.url}/jmx-sdk-latest/
+
+####################################### DEMOS #######################################
+
+# The url of the demo section on the MQTT.Cool site.
+# DEMO_LINK_PLACEHOLDER
+product.demo.url=${product.homepage}/demos
+
+####################################### LOGGERS #######################################
+
+# The logger name to be expanded in the logging configuration files and referenced in the source code
+# PRODUCT_LOGGER_PLACEHOLDER
+product.logger.name=MQTTCoolLogger
+
+# The logger file to be expanded in the logging configuration files.
+# PRODUCT_LOGGER_FILE_PLACEHOLDER
+product.logger.file=mqtt.cool.log
+
+# The appender name to be expanded in the logging configuration files.
+# PRODUCT_LOGGER_APPENDER_PLACEHDOLER
+product.logger.appender=MQTTCoolRolling
+
+####################################### HOOK REFERENCES #######################################
+
+# The Hook simple class name.
+# PRODUCT_HOOK_PLACEHOLDER
+hook.class_name=MqttCoolHook
+
+# The Hook groupId for Maven
+# PRODUCT_HOOK_GROUP_ID_PLACEHOLDER
+hook.maven.groupid=cool.mqtt
+
+# The Hook artificatId for Maven
+# PRODUCT_HOOK_ARTIFACT_ID_PLACEHOLDER
+hook.maven.artifactid=mqtt.cool-hook-java-api
+
+# The of url of the Hook GitHub repository.
+# HOOK_GITHUB_REPO_PLACEHOLDER
+hook.github_repo.url=https://github.com/MQTTCool/mqtt.cool-hook-java-api
+
+####################################### FILES #######################################
+
+# The filename of client libraries (without extension)
+client_library.name=mqtt.cool
+
+# The prefix of the jar files for Adapter and Hook.
+product.jar_prefix=mqtt.cool
+
+# The name to be used as the root folder of the standalone distribution package
+product.standalone.name=mqtt.cool
+
+# The name to be used for the standalone distribution package (tar.gz and zip).
+product.branded_standalone.name=mqtt.cool
+
+# The name to be used as the root folder of the adapter distribution package
+product.adapter.name=mqtt.cool_adapter
+
+# The name to be used for the standalone distribution package (tar.gz and zip).
+product.branded_adapter.name=mqtt.cool_adapter
+
+# The pattern of the launch scripts on unix-like systems.
+# SH_SCRIPT_PATTERN_PLACEHOLDER
+product.unix.launch_script_pattern=mc
+
+# The installation path on unix-like systems.
+# INSTALLATION_PATH_PLACEHOLDER
+product.unix.install_path=/opt/mqtt.cool
+
+# The configuration file name.
+# CONF_FILE_PLACEHOLDER
+product.conf.name=configuration
+
+# The root element of the configuration file.
+# CONF_ROOT_ELEMENT_PLACEHOLDER
+product.conf.root_element=mqttcool
+
+# The logging configuration file name.
+# LOGGING_CONFIGURATION_FILE_PLACEHOLDER
+product.log_conf.name=log_configuration
+
+# The license configuration file name.
+# LICENSE_CONFIGURATION_FILE_PLACEHOLDER
+product.edition_conf.name=edition
+
+# The root element of the license configuration file.
+# EDITION_CONF_ROOT_ELEMENT_PLACEHOLDER
+product.edition_conf.root_element=mqttcool_edition
+
+# The service name (and also the init.d script name) on unix-like systems.
+# SERVICE_NAME_PLACEHOLDER
+product.unix.service_name=mqttcool
+
+# The service name on windows systems.
+# WIN_SERVICENAME_PLACEHOLDER
+product.windows.service_name=mqtt.cool
+
+# The pattern of the launch scripts on unix-like systems.
+# BAT_SCRIPT_PATTERN_PLACEHOLDER
+product.windows.launch_script_pattern=mc
+
+# The environment variable for the absolute path of the configuration file.
+# CONFIG_PATH_PLACEHOLDER
+product.config_path_env_variable=MC_CONFIG
+
+# The pid file for unix-like systems.
+# PIDFILE_PLACEHOLDER
+product.unix.pidfile=mqttcool
+
+# The user and the group for unix-like systems.
+# USER_PLACEHOLDER
+product.unix.user_and_group=mqttcool
+
+# The environment variable for the user on unix-like systems.
+# USER_ENV_PLACEHOLDER
+product.unix.user_env_variable=MC_USER
+
+# The environment variable for the group on unix-like systems.
+# GROUP_ENV_PLACEHOLDER
+product.unix.group_env_variable=MC_GROUP
+
+# The user and group on solaris systems.
+# Actually "mqttcool" is accepted, but pay attention if use a name length > 10.
+# SOLARIS_USER_AND_GRP_ENV_PLACEHOLDER
+product.solaris.user_and_group=mqttcool
+
+# Prefix of environnement variables which can be used to specify user settings
+# on unix-like systems.
+# USERADD_PREFIX_ENV_PLACEHOLDER
+product.unix.useradd_prefix_env_variable=MC_USERADD
+
+# Environment variable for the name of unix-like distro.
+# DISTRO_ENV_VARIABLE_PLACEHOLDER
+product.unix.distro_env_variable=MC_DISTRO
+
+# Environment variable for the product home.
+# PRODUCT_HOME_ENV_VARIABLE_PLACEHOLDER
+product.home_env_variable=MC_HOME
+
+# Environment variable for the source installation path on unix-like systems.
+# SOURCE_ENV_VARIABLE_PLACEHOLDER
+product.unix.source_env_variable=MC_SOURCE
+
+# Environment variable for the target installation path on unix-like systems.
+# DESTDIR_ENV_PLACEHOLDER
+product.unix.dest_dir_env_variable=MC_DESTDIR
+
+# Environment variable for setting file limits on unix-like systems.
+# FILELIMIT_ENV_VARIABLE_PLACEHOLDER
+product.unix.file_limit_env_variable=MC_FILELIMIT
+
+# Environment variable for disabling interactivity.
+# INTERACTIVE_ENV_VARIABLE_PLACEHOLDER
+product.unix.interactive_env_variable=MC_INTERACTIVE
+
+# Environment variable for disabling service activation on unix-like systems.
+# ADD_SERVICE_ENV_VARIABLE_PLACEHOLDER
+product.unix.service_activation_env_variable=MC_ADD_SERVICE
+
+# Environment variable for setting new user on macOS.
+# NEW_USER_ID_ENV_VARIABLE_PLACEHOLDER
+product.macos.new_user_id_env_variable=MC_NEW_USER_ID
+
+# Environment variable for setting new group on macOS.
+# NEW_GROUP_ID_ENV_VARIABLE_PLACEHOLDER
+product.macos.new_group_id_env_variable=MC_NEW_GROUP_ID

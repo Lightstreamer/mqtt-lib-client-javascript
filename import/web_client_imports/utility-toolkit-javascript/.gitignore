@@ -1,0 +1,10 @@
+.settings
+.project
+built
+builtWeswit
+docs
+build/js.jar
+build/compiler.jar
+build/*.sh
+build/*.bat
+.svn

@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: Message</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Class: Message</h1>
+    
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>Message</h2>
+        
+            <div class="class-description">A wrapper of the <code>PUBLISH</code> Control Packet, used to
+  transport an <i>Application Message</i> from an <code>MqttClient</code>
+  to an MQTT broker and vice versa, through an end-to-end connection.</div>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+<dt>
+
+
+    <h4 class="name" id="Message"><span class="type-signature"></span>new Message<span class="signature">(payload<span class="signature-attributes">non-null</span>)</span><span class="type-signature"></span></h4>
+
+</dt>
+<dd>
+
+
+<div class="description">
+    Constructs a <code>PUBLISH</code> Control Packet wrapper starting from a
+payload, which can be specified in different formats.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>payload</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">ArrayBuffer</span>
+|
+
+<span class="param-type">Int8Array</span>
+|
+
+<span class="param-type">Uint8Array</span>
+|
+
+<span class="param-type">Int16Array</span>
+|
+
+<span class="param-type">Uint16Array</span>
+|
+
+<span class="param-type">Int32Array</span>
+|
+
+<span class="param-type">Uint32Array</span>
+|
+
+<span class="param-type">Float32Array</span>
+|
+
+<span class="param-type">Float64Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The payload
+  containing the Application Message</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        If the provided <code>payload</code> is not of the expected
+  type.
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        <dl>
+            
+<dt>
+    <h4 class="name" id="destinationName"><span class="type-signature"></span>destinationName<span class="type-signature"> :string</span></h4>
+
+
+</dt>
+<dd>
+
+<div class="description">
+    The name of the topic to which the Application Message is published. This
+property is mandatory when sending an Application Message through the
+<a href="MqttClient.html#send">MqttClient#send</a> method.
+<p>
+When setting this property, an Error is thrown if the provided value is
+not of <code>string</code> type.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">string</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="duplicate"><span class="type-signature">(readonly) </span>duplicate<span class="type-signature"> :boolean</span></h4>
+
+
+</dt>
+<dd>
+
+<div class="description">
+    The duplicate flag. If set to <code>true</code>, indicates that the
+<code>PUBLISH</code> Control Packet containing the Application Message
+could be a redelivery of an earlier attempt.
+<p>
+Note that this is a <i>read only</i> property as it can only be set on
+the instances received from the MQTT broker.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">boolean</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li><code>false</code></li>
+        </ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="payloadBytes"><span class="type-signature">(readonly) </span>payloadBytes<span class="type-signature"> :ArrayBuffer</span></h4>
+
+
+</dt>
+<dd>
+
+<div class="description">
+    The payload as an ArrayBuffer.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">ArrayBuffer</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="payloadString"><span class="type-signature">(readonly) </span>payloadString<span class="type-signature"> :string</span></h4>
+
+
+</dt>
+<dd>
+
+<div class="description">
+    The payload as a string.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">string</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="qos"><span class="type-signature"></span>qos<span class="type-signature"> :number</span></h4>
+
+
+</dt>
+<dd>
+
+<div class="description">
+    The Quality of Service level for delivery of the Application Message as
+specified below:
+<ul>
+<li>0 - At most once delivery</li>
+<li>1 - At least once delivery</li>
+<li>2 - Exactly once delivery</li>
+</ul>
+<p>
+When setting this property, an Error is thrown if the provided value is
+different from any of the ones specified above.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">number</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li><code>0</code></li>
+        </ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="retained"><span class="type-signature"></span>retained<span class="type-signature"> :boolean</span></h4>
+
+
+</dt>
+<dd>
+
+<div class="description">
+    The retained flag. If set to <code>true</code>, specifies that the MQTT
+broker has to store the Application Message and its QoS,
+so that the <code>PUBLISH</code> Control Packet can be delivered to
+clients immediately after they subscribe to a matching topic name.
+<p>
+A <code>Message</code> instance received from the MQTT broker has the
+retain flag set to <code>true</code>, if the message is sent as a
+consequence of a subscription made after the message has been published
+with the retain flag set to <code>true</code>.
+<p>
+When setting this property, an Error is thrown if the provided value is
+not of <code>boolean</code> type.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">boolean</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li><code>false</code></li>
+        </ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+</dd>
+
+        </dl>
+    
+
+    
+    
+        
+    
+    
+    
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <a href="https://mqtt.cool"><img src="logo.svg"/></a><h2><a href="index.html">Home</a> | <a href="index-all.html">Index</a></h2><h3>Externals</h3><ul><li class="signature"><a href="external-LightstreamerClient.html">LightstreamerClient</a></li></ul><h3>Classes</h3><ul><li class="signature"><a href="Message.html">Message</a></li></ul><h3>Interfaces</h3><ul><li class="signature"><a href="MqttClient.html">MqttClient</a></li><li class="signature"><a href="MQTTCoolListener.html">MQTTCoolListener</a></li><li class="signature"><a href="MQTTCoolSession.html">MQTTCoolSession</a></li><li class="signature"><a href="MqttStorage.html">MqttStorage</a></li></ul><h3>Global</h3><ul><li><a href="global.html#openSession">openSession</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    <div class="footer_text">MQTT&#46;Cool Node.js Client 1.2.5 API Reference
+      <div class="jsdoc_ctime">
+         Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue Sep 28 2021 14:22:14 GMT+0200 (W. Europe Daylight Time)
+      </div>
+    </div>
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

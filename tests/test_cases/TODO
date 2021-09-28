@@ -1,0 +1,10 @@
+Testing resubscription of shared subscription to verify that acks are still received
+Testing to the same topic but with different QoS
+Testing overlapping subscriptions (in both dedicated and shared scenarios).
+Test shared subscription with unordered sequence
+
+
+Failed or timed out:
+
+MqttClientImplTest_subscribe.16 (timeout)
+MqttClientImplTest_subscribe.17 (failed)
