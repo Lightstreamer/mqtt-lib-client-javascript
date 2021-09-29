@@ -4,9 +4,8 @@
   <property environment="env" />
   <import file="commons.xml" />
 
+  <property name="jsdoc.cmd.path" location="${temp_dir}/node_modules/.bin" />
   <property name="jsdoc_output" location="${temp_dir}/temp_docs" />
-
-  <property name="jsdoc.cmd" location="${temp_dir}/node_modules/.bin/jsdoc.cmd" />
   <property name="conf_file" location="${doc_res}/jsdoc3.json" />
   <property name="summary_file_name" value="jsdoc_summary_${library}.html" />
   <property name="summary_file" location="${doc_res}/${summary_file_name}" />
@@ -15,15 +14,7 @@
   <property name="logo_file" location="${doc_res}/${logo_file_name}" />
   <property name="custom_conf_file" location="${temp_dir}/tempjsconf.json" />
 
-  <target name="init">
-    <echo message="Init..." />
-    <condition property="jsdoc.installed">
-      <available file="${jsdoc.cmd}" />
-    </condition>
-    <echo message="Property jsdoc.installed: ${jsdoc.installed}" />
-  </target>
-
-  <target name="fix-js" depends="init">
+  <target name="fix-js">
     <echo>Replacing token [EXTERNAL_APIDOC_REFERENCE] with ${external.apidoc.reference}</echo>
     <replace dir="${input_dir}" token="EXTERNAL_APIDOC_REFERENCE" value="${external.apidoc.reference}" />
 
@@ -77,7 +68,7 @@
     <replace file="${custom_conf_file}" token="__LOGO_FILE__" value="${logo_file_quote}" />
 
     <!--WINDOWS VERSION-->
-    <exec executable="${jsdoc.cmd}" dir="${doc_res}" osfamily="windows" >
+    <exec executable="${jsdoc.cmd.path}/jsdoc.cmd" dir="${doc_res}" osfamily="windows" >
       <arg value="-r" />
       <arg value="-t" />
       <arg value="${temp_dir}/${template}" />
@@ -89,7 +80,7 @@
     </exec>
 
     <!-- UNIX VERSION -->
-    <exec executable="${doc_res}/jsdoc" osfamily="unix">
+    <exec executable="${jsdoc.cmd.path}/jsdoc" osfamily="unix">
       <arg value="-r" />
       <arg value="-t" />
       <arg value="${template}" />
