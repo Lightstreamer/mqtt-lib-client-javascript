@@ -11,7 +11,7 @@ define('LightstreamerMQTT',[], function() {
   typeof LightstreamerMQTT !== 'undefined' // enforce compilation to not change below code.
   LightstreamerMQTT['library'] = 'javascript';
   LightstreamerMQTT['version'] = '1.2.4';
-  LightstreamerMQTT['build'] = '512';
+  LightstreamerMQTT['build'] = '489';
 
 
   return LightstreamerMQTT;
@@ -4300,7 +4300,7 @@ function(LightstreamerClient, Objects, LoggerManager, MQTTCoolSessionImpl,
      * @type {string}
      * @public
      */
-  var LIB_VERSION = '1.2.4 build 512';
+  var LIB_VERSION = '1.2.4 build 489';
 
   /**
    * The Adapter Set which implements the MQTT.cool server features.
