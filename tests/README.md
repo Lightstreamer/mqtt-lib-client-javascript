@@ -15,6 +15,6 @@
 1. From `tests/nodejs/lib`, run the following command to install the required dependencies:
    `$ npm install faye-websocket xmlhttprequest-cookie`
 
-2. From `tests/nodejs', launch the tests:
+2. From `tests/nodejs`, launch the tests:
    `$ node test.js int`
 
