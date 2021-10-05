@@ -1430,7 +1430,7 @@ function(Suites, LightstreamerClient, LoggerManager, openSession,
         ];
       });
 
-      asyncTest(14, '', function(async, data) {
+      xasyncTest(14, '', function(async, data) {
         var listener = {
           onSubscribed: function() { }
         };
