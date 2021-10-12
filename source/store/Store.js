@@ -1,4 +1,4 @@
-import DefaultStorage from './DefaultStorage';
+import DefaultStorage from 'DefaultStorage_stub';
 import LoggerManager from '../LoggerManager';
 
     var log = LoggerManager.getLoggerProxy('mqtt.cool.store');
