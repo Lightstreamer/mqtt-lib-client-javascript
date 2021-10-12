@@ -1,6 +1,4 @@
-'use strict';
-define(['./Objects'],
-  function(Objects) {
+import Objects from './Objects';
 
     var mkEvent = Objects.makeErrorEvent;
 
@@ -117,5 +115,4 @@ define(['./Objects'],
       }
     };
 
-    return Errors;
-  });
+    export default Errors;

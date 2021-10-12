@@ -1,6 +1,5 @@
-'use strict';
-define(['../utils/Objects', 'LoggerManager'],
-  function(Objects, LoggerManager) {
+import Objects from '../utils/Objects';
+import LoggerManager from '../LoggerManager';
 
     var logger = LoggerManager.getLoggerProxy('mqtt.cool');
 
@@ -153,5 +152,4 @@ define(['../utils/Objects', 'LoggerManager'],
     MqttConnectOptions.prototype['onNotAuthorized'] =
       MqttConnectOptions.prototype.onNotAuthorized;
 
-    return MqttConnectOptions;
-  });
+    export default MqttConnectOptions;

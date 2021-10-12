@@ -1,9 +1,8 @@
-'use strict';
-define(['../utils/Env'], function(Env) {
+import Env from '../utils/Env';
 
-  if (!Env.isNodeJs()) {
-    return;
-  }
+  // if (!Env.isNodeJs()) {
+  //   return;
+  // }
 
   var storageFolder = './mqttcool-storage';
   var fs = require('fs');
@@ -79,5 +78,4 @@ define(['../utils/Env'], function(Env) {
   DefaultNodeJsStorage.prototype['clearAll'] =
     DefaultNodeJsStorage.prototype.clearAll;
 
-  return DefaultNodeJsStorage;
-});
+  export default DefaultNodeJsStorage;

@@ -1,4 +1,4 @@
-define([], function() {
+
   /**
    * Interface to be implemented for providing a custom storage layer to an
    * {@link MqttClient} instance that connects requiring the management of
@@ -46,4 +46,4 @@ define([], function() {
      */
     keys: function() { }
   };
-});
+

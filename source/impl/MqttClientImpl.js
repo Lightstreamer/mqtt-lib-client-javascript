@@ -1,11 +1,15 @@
-'use strict';
-define(['LightstreamerClient', 'Subscription', 'LoggerManager',
-  '../utils/Objects', '../utils/Errors', '../utils/Json', '../utils/Env',
-  '../store/Store', '../Message', './MqttSubscribeOptions',
-  './MqttUnsubscribeOptions', './MqttConnectOptions'],
-  function(LightstreamerClient, Subscription, LoggerManager, Objects, Errors,
-    Json, Env, Store, Message, MqttSubscribeOptions, MqttUnsubscribeOptions,
-    MqttConnectOptions) {
+import {LightstreamerClient} from '__lightstreamer-client-stub__';
+import {Subscription} from '__lightstreamer-client-stub__';
+import LoggerManager from '../LoggerManager';
+import Objects from '../utils/Objects';
+import Errors from '../utils/Errors';
+import Json from '../utils/Json';
+import Env from '../utils/Env';
+import Store from '../store/Store';
+import Message from '../Message';
+import MqttSubscribeOptions from './MqttSubscribeOptions';
+import MqttUnsubscribeOptions from './MqttUnsubscribeOptions';
+import MqttConnectOptions from './MqttConnectOptions';
 
     var logger = LoggerManager.getLoggerProxy('mqtt.cool');
 
@@ -1433,7 +1437,7 @@ define(['LightstreamerClient', 'Subscription', 'LoggerManager',
         // protocol).
         if (activeSubscription) {
           var self = this;
-          function resubscribe(subscription) {
+          var resubscribe = function(subscription) {
             subscription.addListener({
               onUnsubscription: function() {
                 subscription.removeListener(this);
@@ -1724,7 +1728,7 @@ define(['LightstreamerClient', 'Subscription', 'LoggerManager',
             'associated with:', topicFilter);
 
           var self = this;
-          function unsubscribe(subscription) {
+          var unsubscribe = function(subscription) {
             // Get the native Lightstreamer subscription for adding a specific
             // listener that will handle the explicit unsubscription option.
             // We do that here and not in the listener created at the time
@@ -2809,5 +2813,4 @@ define(['LightstreamerClient', 'Subscription', 'LoggerManager',
       }
     });
 
-    return MqttClientImpl;
-  });
+    export default MqttClientImpl;

@@ -1,4 +1,4 @@
-define([], function() {
+
   /**
    * Interface to be used for communicating with an MQTT broker. An
    * <code>MqttClient</code> instance actually acts as MQTT client.
@@ -1068,4 +1068,4 @@ END_Web_JSDOC_EXCLUDE
      *   error.
      */
   };
-});
+  

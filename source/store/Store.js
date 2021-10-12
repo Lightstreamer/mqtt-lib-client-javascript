@@ -1,6 +1,5 @@
-'use strict';
-define(['./DefaultStorage', 'LoggerManager'],
-  function(DefaultStorage, LoggerManager) {
+import DefaultStorage from './DefaultStorage';
+import LoggerManager from '../LoggerManager';
 
     var log = LoggerManager.getLoggerProxy('mqtt.cool.store');
 
@@ -243,5 +242,4 @@ define(['./DefaultStorage', 'LoggerManager'],
     Store.prototype['processInOrder'] = Store.prototype.processInOrder;
     Store.prototype['clear'] = Store.prototype.clear;
 
-    return Store;
-  });
+    export default Store;

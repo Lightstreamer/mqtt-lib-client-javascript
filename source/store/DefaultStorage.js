@@ -1,9 +1,8 @@
-'use strict';
-define(['../utils/Env'], function(Env) {
+import Env from '../utils/Env';
 
-  if (Env.isNodeJs()) {
-    return;
-  }
+  // if (Env.isNodeJs()) {
+  //   return;
+  // }
 
   /**
    * @constructor
@@ -65,5 +64,4 @@ define(['../utils/Env'], function(Env) {
   DefaultWebStorage.prototype['clearAll'] =
     DefaultWebStorage.prototype.clearAll;
 
-  return DefaultWebStorage;
-});
+  export default DefaultWebStorage;

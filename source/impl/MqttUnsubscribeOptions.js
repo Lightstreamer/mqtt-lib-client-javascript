@@ -1,5 +1,4 @@
-'use strict';
-define(['../utils/Objects'], function(Objects) {
+import Objects from '../utils/Objects';
 
   // Allowed keys and relative types.
   var types = {
@@ -46,5 +45,4 @@ define(['../utils/Objects'], function(Objects) {
   MqttUnsubscribeOptions.prototype['onFailure'] = MqttUnsubscribeOptions
     .prototype.onFailure;
 
-  return MqttUnsubscribeOptions;
-});
+  export default MqttUnsubscribeOptions;

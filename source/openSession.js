@@ -1,8 +1,8 @@
-'use strict';
-define(['LightstreamerClient', './utils/Objects', 'LoggerManager',
-  './impl/MQTTCoolSessionImpl', './utils/Errors'],
-function(LightstreamerClient, Objects, LoggerManager, MQTTCoolSessionImpl,
-  Errors) {
+import {LightstreamerClient} from '__lightstreamer-client-stub__';
+import Objects from './utils/Objects';
+import LoggerManager from './LoggerManager';
+import MQTTCoolSessionImpl from './impl/MQTTCoolSessionImpl';
+import Errors from './utils/Errors';
 
   var logger = LoggerManager.getLoggerProxy('mqtt.cool');
   logger.info('Logger SETUP');
@@ -231,6 +231,4 @@ function(LightstreamerClient, Objects, LoggerManager, MQTTCoolSessionImpl,
   openSession['LIB_VERSION'] = LIB_VERSION;
   openSession['ADAPTER_SET'] = ADAPTER_SET;
 
-  return openSession;
-});
-
+  export default openSession;

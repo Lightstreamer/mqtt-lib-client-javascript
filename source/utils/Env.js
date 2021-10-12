@@ -1,5 +1,4 @@
-'use strict';
-define([], function() {
+
 
   var isNodeJSVar = typeof process == 'object' && (/node(\.exe)?$/
     .test(process.execPath) || (process.node && process.v8) ||
@@ -44,5 +43,4 @@ define([], function() {
   Env['decodeFromBase64'] = Env.decodeFromBase64;
   Env['encodeToBase64'] = Env.encodeToBase64;
 
-  return Env;
-});
+  export default Env;

@@ -1,5 +1,4 @@
-'use strict';
-define(['./utils/Objects'], function(Objects) {
+import Objects from './utils/Objects';
   /**
    * Constructs a <code>PUBLISH</code> Control Packet wrapper starting from a
    * payload, which can be specified in different formats.
@@ -278,5 +277,4 @@ define(['./utils/Objects'], function(Objects) {
     }
   });
 
-  return Message;
-});
+  export default Message;

@@ -1,4 +1,4 @@
-define([], function() {
+
   /**
    * Encapsulation of a session opened against PRODUCT_JSNAME_PLACEHOLDER, from
    * which to create {@link MqttClient} objects used to communicate with MQTT
@@ -141,4 +141,4 @@ define([], function() {
 
     close: function() { }
   };
-});
+

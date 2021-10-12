@@ -1,4 +1,4 @@
-define([], function() {
+
 
   var LightstreamerMQTT = {
 
@@ -14,5 +14,4 @@ define([], function() {
   LightstreamerMQTT['build'] = 'build_placeholder';
 
 
-  return LightstreamerMQTT;
-});
+  export default LightstreamerMQTT;
