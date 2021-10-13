@@ -7,6 +7,7 @@
     "@rollup/plugin-node-resolve": "^13.0.5",
     "@rollup/plugin-replace": "^3.0.0",
     "@rollup/plugin-virtual": "^2.0.3",
+    "jsdoc": "^3.6.7",
     "lightstreamer-client-node": "8.0.3",
     "lightstreamer-client-web": "8.0.3",
     "rollup": "^2.58.0"
