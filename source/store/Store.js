@@ -5,6 +5,7 @@ import LoggerManager from '../LoggerManager';
 
     /**
      * @constructor
+     * @ignore
      **/
     var Store = function() {
       /** @type {number} */

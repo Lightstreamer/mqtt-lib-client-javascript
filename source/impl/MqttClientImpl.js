@@ -146,6 +146,7 @@ import MqttConnectOptions from './MqttConnectOptions';
      *   packaged as a JSON string for later delivery to MQTT.Cool.
      * @param {boolean=} requireAck - Optional flag indicating whether the
      *   packet requires an acknowledge back from MQTT.Cool.
+     * @ignore
      */
     var Packet = function(body, requireAck) {
       this['body'] = body;
@@ -641,6 +642,7 @@ import MqttConnectOptions from './MqttConnectOptions';
       * @param {string} brokerAlias
       * @param {string} clientId
       * @param {!LightstreamerClient} lsClient
+      * @ignore
       */
     var MqttClientImpl = function(brokerAlias, clientId, lsClient) {
       logger.debug('Creating a new instance of MqttClient');

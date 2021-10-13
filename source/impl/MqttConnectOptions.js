@@ -27,6 +27,7 @@ import LoggerManager from '../LoggerManager';
      *          onSuccess:?function,
      *          onFailure:?function,
      *          onNotAuthorized:?function}=} connectOptions
+     * @ignore
      */
     var MqttConnectOptions = function(connectOptions) {
       // Prepare default not nullable settings.

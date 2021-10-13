@@ -1021,7 +1021,7 @@ END_Web_JSDOC_EXCLUDE
      * @throws {Error} If <code>MqttClient</code> is in the disconnected status
      *   or the provided arguments are invalid.
      */
-    unsubscribe: function(topicFilter, unsubscribeOptions) { }
+    unsubscribe: function(topicFilter, unsubscribeOptions) { },
 
     /**
      * @typedef {Object=} UnsubscribeOptions - Object containing the properties
@@ -1067,5 +1067,12 @@ END_Web_JSDOC_EXCLUDE
      * @param {string} responseObject.errorMessage - The description of the
      *   error.
      */
+
+    /**
+     * NB Without this dummy declaration marking the end of the class, jsdoc doesn't
+     * recognize the declarations above.
+     * @private
+     */
+    dummy: function() {}
   };
   

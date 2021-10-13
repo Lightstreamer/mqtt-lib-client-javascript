@@ -31,6 +31,7 @@ import Errors from './utils/Errors';
    * A constant string representing the name of the library.
    * @type {string}
    * @public
+   * @ignore
    */
   var LIB_NAME = 'library_tag_placeholder';
 
@@ -38,6 +39,7 @@ import Errors from './utils/Errors';
      * A constant string representing the version of the library.
      * @type {string}
      * @public
+     * @ignore
      */
   var LIB_VERSION = 'version_placeholder build build_placeholder';
 

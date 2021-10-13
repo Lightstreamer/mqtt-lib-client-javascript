@@ -7,6 +7,7 @@ import Env from '../utils/Env';
   /**
    * @constructor
    * @implements {MqttStorage}
+   * @ignore
    */
   var DefaultWebStorage = function() { };
 

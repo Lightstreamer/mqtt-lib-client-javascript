@@ -11,6 +11,7 @@ import Env from '../utils/Env';
   /**
    * @constructor
    * @implements {MqttStorage}
+   * @ignore
    */
   var DefaultNodeJsStorage = function() {
     try {

@@ -4,6 +4,7 @@ import Env from './Env';
     * @typedef {{ suback:number, seq:?number, destinationName:string,
     *          qos:number, retained:boolean, duplicate:boolean,
     *          payload:string}}
+    * @private
     */
   var realTimeEventType;
 

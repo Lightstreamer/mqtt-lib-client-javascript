@@ -11,6 +11,7 @@ import Objects from '../utils/Objects';
   /**
    * @constructor
    * @param {Object=} subscribeOptions
+   * @ignore
    */
   var MqttSubscribeOptions = function(subscribeOptions) {
     /** @type {!Object} */

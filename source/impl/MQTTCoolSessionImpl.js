@@ -8,6 +8,7 @@ import Env from '../utils/Env';
      * @param {string} sessionId -
      * @param {LightstreamerClient} lsClient -
      * @implements {MQTTCoolSession}
+     * @ignore
      */
     var MQTTCoolSessionImpl = function(sessionId, lsClient) {
       this._sessionId = sessionId;

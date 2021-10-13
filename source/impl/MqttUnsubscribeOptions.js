@@ -9,6 +9,7 @@ import Objects from '../utils/Objects';
   /**
    * @constructor
    * @param {Object=} unsubscribeOptions
+   * @ignore
    */
   var MqttUnsubscribeOptions = function(unsubscribeOptions) {
     this._unsubscribeOptions = unsubscribeOptions || {};
