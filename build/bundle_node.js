@@ -55,7 +55,6 @@ const options = {
             replace({
                 values: {
                     '__lightstreamer-client-stub__': 'lightstreamer-client-node',
-                    "import DefaultStorage from './DefaultStorage';": "import DefaultStorage from './DefaultStorage_node';",
                     'version_placeholder': versionNum,
                     'build_placeholder': buildNum,
                     'library_name_placeholder': 'nodejs',
