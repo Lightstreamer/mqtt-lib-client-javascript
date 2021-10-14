@@ -17,7 +17,7 @@
      * @return {string} The decoded string.
      */
     decodeFromBase64: function(encoded) {
-      if (this.isNodeJs()) {
+      if (Env.isNodeJs()) {
         return new Buffer(encoded, 'base64').toString();
       } else {
         return atob(encoded);
@@ -31,7 +31,7 @@
      * @return {string} The encoded Base64 string.
      */
     encodeToBase64: function(decoded) {
-      if (this.isNodeJs()) {
+      if (Env.isNodeJs()) {
         return new Buffer(decoded).toString('base64');
       } else {
         return btoa(decoded);

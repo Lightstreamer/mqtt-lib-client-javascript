@@ -356,6 +356,7 @@ import MqttConnectOptions from './MqttConnectOptions';
 
     /**
      * @private
+     * @constructor
      */
     var ProtocolListener = function(delegate) {
       this._delegate = delegate;

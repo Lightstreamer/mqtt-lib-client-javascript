@@ -98,7 +98,7 @@ import Objects from './Objects';
         if (code > 0) {
           return Types.SERVER_ERROR;
         }
-        var errorType = this.invMap[String(code)];
+        var errorType = Errors.invMap[String(code)];
         return errorType;
       },
 
