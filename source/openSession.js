@@ -111,6 +111,7 @@ import Errors from './utils/Errors';
      *   See {@link EXTERNAL_APIDOC_REFERENCE/ConnectionDetails.html#setServerAddress ConnectionDetails#setServerAddress}
      *   for details.
      * @function openSession
+     * @suppress {checkTypes}
      */
   var openSession = function(serverAddress, username, password, listener) {
     logger.debug('Creating a new MQTTCoolSession');
