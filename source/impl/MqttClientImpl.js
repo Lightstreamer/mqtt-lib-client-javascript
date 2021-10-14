@@ -799,7 +799,6 @@ import MqttConnectOptions from './MqttConnectOptions';
       },
 
       /**
-       * @param {STATUS} state -
        * @throws {Error}
        * @private
        */
