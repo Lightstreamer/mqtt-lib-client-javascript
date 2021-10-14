@@ -2022,7 +2022,7 @@ import MqttConnectOptions from './MqttConnectOptions';
           }
         } catch (e) {
           var error = e;
-          if (!e instanceof Error) {
+          if (!(e instanceof Error)) {
             error = new Error(e);
           }
           this._stop(error);
@@ -2620,7 +2620,7 @@ import MqttConnectOptions from './MqttConnectOptions';
             this._tryRecovery(this._status, changedStatus);
           } catch (e) {
             var error = e;
-            if (!error instanceof Error) {
+            if (!(error instanceof Error)) {
               error = new Error(e);
             }
             this._stop(error);
