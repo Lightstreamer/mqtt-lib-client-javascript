@@ -58,6 +58,9 @@ export default /*@__PURE__*/(function() {
     this.setWrappedInstance(toWrap);
   };
 
+  /**
+   * @suppress {checkTypes}
+   */
   LoggerProxy.prototype = {
        
       /**
