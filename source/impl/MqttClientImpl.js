@@ -357,6 +357,7 @@ import MqttConnectOptions from './MqttConnectOptions';
     /**
      * @private
      * @constructor
+     * @param {Object} [delegate]
      */
     var ProtocolListener = function(delegate) {
       this._delegate = delegate;
@@ -446,7 +447,7 @@ import MqttConnectOptions from './MqttConnectOptions';
       },
 
       /**
-       * @param {Subscription} subscription -
+       * @param {Subscription} [subscription] -
        * @private
        */
       onSharedUnsubscription: function(subscription) {

@@ -183,7 +183,7 @@ import LoggerManager from '../LoggerManager';
       /**
        * @param {function} consumerFunc
        * @param {function} postProcessFunc
-       * @param {Object} thisArg
+       * @param {Object} [thisArg]
        */
       processInOrder: function(consumerFunc, postProcessFunc, thisArg) {
         if (!this._enabled) {

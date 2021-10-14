@@ -124,6 +124,11 @@ import LoggerManager from '../LoggerManager';
           [responseObject]);
       },
 
+      /**
+       * 
+       * @param {*} message 
+       * @param {*} [object] 
+       */
       _debug: function(message, object) {
         logger.debug('MqttConnectionOptions.' + message + JSON.stringify(
           object || ''));
