@@ -112,6 +112,7 @@ import Objects from './Objects';
           var responseObj = mkEvent(wrappedMsg['code'], wrappedMsg['message']);
           return responseObj;
         }
+        return null;
       }
     };
 
