@@ -299,16 +299,16 @@ export default /*@__PURE__*/(function() {
   LoggerProxy.prototype["logInfo"] = LoggerProxy.prototype.logInfo;
   
   LoggerProxy.prototype["warn"] = LoggerProxy.prototype.warn;
-  LoggerProxy.prototype["isWarnEnabled"] = LoggerProxy.prototype.isWarnEnabled;
+  LoggerProxy.prototype["isWarnEnabled"] = LoggerProxy.prototype.isWarnLogEnabled;
   LoggerProxy.prototype["logWarn"] = LoggerProxy.prototype.logWarn;
   
   LoggerProxy.prototype["error"] = LoggerProxy.prototype.error;
-  LoggerProxy.prototype["isErrorEnabled"] = LoggerProxy.prototype.isErrorEnabled;
+  LoggerProxy.prototype["isErrorEnabled"] = LoggerProxy.prototype.isErrorLogEnabled;
   LoggerProxy.prototype["logError"] = LoggerProxy.prototype.logError;
   LoggerProxy.prototype["logErrorExc"] = LoggerProxy.prototype.logErrorExc;
   
   LoggerProxy.prototype["fatal"] = LoggerProxy.prototype.fatal;
-  LoggerProxy.prototype["isFatalEnabled"] = LoggerProxy.prototype.isFatalEnabled;
+  LoggerProxy.prototype["isFatalEnabled"] = LoggerProxy.prototype.isFatalLogEnabled;
   LoggerProxy.prototype["logFatal"] = LoggerProxy.prototype.logFatal;
 
   return LoggerProxy;
