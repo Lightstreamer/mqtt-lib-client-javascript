@@ -1,6 +1,11 @@
 SDK_VERSION build SDK_BUILD (SDK_DISTRIBUTION_DATE)
 -----------------------------
 
+**Improvements**
+
+- Rebuilt from Lightstreamer SDK for Node.js Clients version 8.0.3 build 1800.
+
+
 **Bug Fixes**
 
 - Fixed the client version info sent to the server, as the same fix in the previous version turned out being incorrect.
