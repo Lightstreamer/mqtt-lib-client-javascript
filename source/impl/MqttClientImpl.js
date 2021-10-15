@@ -22,7 +22,7 @@ import MqttConnectOptions from './MqttConnectOptions';
 
     /**
       * All possible Client states.
-      * @enum {number}
+      * enum {number}
       * @private
       */
     var STATUS = {
