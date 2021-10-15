@@ -178,7 +178,6 @@
    *     {@link MqttClient#onReconnectionStart}).
    *   </li>
    * </ul>
-   * @exports MqttClient
    * @interface
    */
   function MqttClient() { }

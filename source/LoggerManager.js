@@ -23,7 +23,6 @@ export default /*@__PURE__*/(function() {
   /**
    * This singleton should be used to obtain {@link Logger} instances to
    * be used to produce the log.
-   * @exports LoggerManager
    * 
    * @example
    * define(["LoggerManager"],function(LoggerManager) {

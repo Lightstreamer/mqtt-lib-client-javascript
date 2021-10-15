@@ -22,7 +22,6 @@
    *   onConnectionFailure : function(errorType, errorCode, errorMessage) { ... }
    * }
    * </pre>
-   * @exports MQTTCoolListener
    * @interface
    */
   function MQTTCoolListener() { }

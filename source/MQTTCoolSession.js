@@ -11,7 +11,6 @@
    * create and the target PRODUCT_JSNAME_PLACEHOLDER server, in order to
    * support <i>end-to-end</i> communications with an MQTT broker.
    *
-   * @exports MQTTCoolSession
    * @interface
    */
   function MQTTCoolSession() { }

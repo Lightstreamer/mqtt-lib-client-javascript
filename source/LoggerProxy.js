@@ -45,8 +45,6 @@ export default /*@__PURE__*/(function() {
    * LoggerProxy instance.
    * @constructor
    * 
-   * @exports LoggerProxy
-   * 
    * @class Offers a simple proxy to {@link Logger} instances. The proxied instance can be
    * switched at any time with a different one.
    * <br>Other than the proxied methods it offers some utility methods that will join

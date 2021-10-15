@@ -5,7 +5,6 @@
    * session persistence.
    *
    * @see {@link MqttClient#connect}
-   * @exports MqttStorage
    * @interface
    */
   function MqttStorage() { }
