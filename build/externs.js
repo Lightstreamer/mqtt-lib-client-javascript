@@ -1,4 +1,4 @@
-function require() {}
+function require(m) {}
 
 var module = {};
 module.config = function() {}; // requirejs module configuration (see https://requirejs.org/docs/api.html#config-moduleconfig)
@@ -16,6 +16,23 @@ process.versions = {};
 process.versions.node = {};
 process.versions.v8 = {};
 process.nextTick = function() {};
+
+/** @suppress {duplicate} */
+var url = {};
+url.parse = function(a) {};
+
+/** @suppress {duplicate} */
+var fs = {};
+fs.readdirSync = function(f) {};
+fs.mkdirSync = function(f) {};
+fs.writeFileSync = function(a, b) {};
+fs.readFileSync = function(a, b) {};
+fs.unlinkSync = function(f) {};
+fs.rmdirSync = function(f) {};
+
+/** @suppress {duplicate} */
+var path = {};
+path.join = function(a, b) {};
 
 window.OpenAjax = {};
 window.OpenAjax.hub = {};
