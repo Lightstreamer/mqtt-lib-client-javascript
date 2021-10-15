@@ -1,5 +1,5 @@
-import {LightstreamerClient} from '__lightstreamer-client-stub__';
-import {Subscription} from '__lightstreamer-client-stub__';
+import {LightstreamerClient} from 'lightstreamer-client-stub';
+import {Subscription} from 'lightstreamer-client-stub';
 import LoggerManager from '../LoggerManager';
 import Objects from '../utils/Objects';
 import Errors from '../utils/Errors';

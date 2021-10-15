@@ -1,4 +1,4 @@
-import {LightstreamerClient} from '__lightstreamer-client-stub__';
+import {LightstreamerClient} from 'lightstreamer-client-stub';
 import Objects from './utils/Objects';
 import LoggerManager from './LoggerManager';
 import MQTTCoolSessionImpl from './impl/MQTTCoolSessionImpl';
