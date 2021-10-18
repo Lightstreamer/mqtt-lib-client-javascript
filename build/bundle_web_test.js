@@ -14,19 +14,29 @@ if (args.length != 4) {
 const [srcDir, outFile, versionNum, buildNum] = args
 
 const virtual_entrypoint = `
+import {LogMessages} from 'lightstreamer-client-web/lightstreamer-core.esm.js';
 import {LightstreamerClient} from 'lightstreamer-client-web/lightstreamer-core.esm.js';
 import {Subscription} from 'lightstreamer-client-web/lightstreamer-core.esm.js';
 import {SimpleLoggerProvider} from 'lightstreamer-client-web/lightstreamer-core.esm.js';
 import {ConsoleAppender} from 'lightstreamer-client-web/lightstreamer-core.esm.js';
-
 import LightstreamerMQTT from "${path.resolve(srcDir, 'LightstreamerMQTT')}.js";
 import openSession from "${path.resolve(srcDir, 'openSession')}.js";
 import Message from "${path.resolve(srcDir, 'Message')}.js";
+import MqttClientImpl from "${path.resolve(srcDir, 'impl/MqttClientImpl')}.js";
+import MqttConnectOptions from "${path.resolve(srcDir, 'impl/MqttConnectOptions')}.js";
+import MqttSubscribeOptions from "${path.resolve(srcDir, 'impl/MqttSubscribeOptions')}.js";
+import MqttUnsubscribeOptions from "${path.resolve(srcDir, 'impl/MqttUnsubscribeOptions')}.js";
+import MQTTCoolSessionImpl from "${path.resolve(srcDir, 'impl/MQTTCoolSessionImpl')}.js";
+import Objects from "${path.resolve(srcDir, 'utils/Objects')}.js";
+import Json from "${path.resolve(srcDir, 'utils/Json')}.js";
+import Env from "${path.resolve(srcDir, 'utils/Env')}.js";
+import Store from "${path.resolve(srcDir, 'store/Store')}.js";
+import DefaultStorage from "${path.resolve(srcDir, 'store/DefaultStorage')}.js";
 
 // WARNING monkey patching LightstreamerClient.setLoggerProvider in order to intercept 
 // the call of LoggerManager, a private class of LightstreamerClient which has been cloned 
 // in mqtt.cool client with the aim of providing similar features
-import LoggerManager from '${path.resolve(srcDir, 'LoggerManager')}.js';
+import LoggerManager from "${path.resolve(srcDir, 'LoggerManager')}.js";
 var oldSetter = LightstreamerClient.setLoggerProvider;
 LightstreamerClient.setLoggerProvider = function(log) {
     LoggerManager.setLoggerProvider(log);
@@ -34,30 +44,29 @@ LightstreamerClient.setLoggerProvider = function(log) {
 }
 
 export default {
-    'LightstreamerClient': LightstreamerClient,
-    'Subscription': Subscription,
-    'SimpleLoggerProvider': SimpleLoggerProvider,
-    'ConsoleAppender': ConsoleAppender,
-    'LightstreamerMQTT': LightstreamerMQTT,
-    'openSession': openSession,
-    'Message': Message
+'LogMessages': LogMessages,
+'LoggerManager': LoggerManager,
+'LightstreamerClient': LightstreamerClient,
+'Subscription': Subscription,
+'SimpleLoggerProvider': SimpleLoggerProvider,
+'ConsoleAppender': ConsoleAppender,
+'LightstreamerMQTT': LightstreamerMQTT,
+'openSession': openSession,
+'Message': Message,
+'MqttClientImpl': MqttClientImpl,
+'MqttConnectOptions': MqttConnectOptions,
+'MqttSubscribeOptions': MqttSubscribeOptions,
+'MqttUnsubscribeOptions': MqttUnsubscribeOptions,
+'MQTTCoolSessionImpl': MQTTCoolSessionImpl,
+'Objects': Objects,
+'Json': Json,
+'Env': Env,
+'Store': Store,
+'DefaultStorage': DefaultStorage
 };`
 
-const copyright = `
-/**
- * @preserve
- * https://mqtt.cool
- * MQTT.Cool Web Client
- * Version ${versionNum} build ${buildNum}
- * Copyright (c) Lightstreamer Srl. All Rights Reserved.
- * Contains: LightstreamerClient, Subscription, SimpleLoggerProvider, ConsoleAppender,
- * LightstreamerMQTT, openSession, Message
- * UMD
- */
-`
-
-const externalModules = ['LightstreamerClient','Subscription','SimpleLoggerProvider','ConsoleAppender']
-const modules = ['LightstreamerMQTT', 'openSession', 'Message']
+const externalModules = ['LogMessages', 'LoggerManager', 'LightstreamerClient','Subscription','SimpleLoggerProvider','ConsoleAppender']
+const modules = ['LightstreamerMQTT', 'openSession', 'Message', 'MqttClientImpl', 'MqttConnectOptions', 'MqttSubscribeOptions', 'MqttUnsubscribeOptions', 'MQTTCoolSessionImpl', 'Objects', 'Json', 'Env', 'Store', 'DefaultStorage']
 const allModules = externalModules.concat(modules)
 const exportVar = 'lightstreamerMqttcoolExports'
 const defaultNs = 'mqttcool'
@@ -138,8 +147,8 @@ const options = {
                 externs: 'externs.js',
                 warning_level: 'DEFAULT',
                 // warning_level: 'VERBOSE',
-                // debug: true,
-                // formatting: 'PRETTY_PRINT',
+                debug: true,
+                formatting: 'PRETTY_PRINT',
             })
         ]
     },
@@ -148,7 +157,6 @@ const options = {
         format: 'iife',
         name: exportVar,
         exports: 'default',
-        banner: copyright,
         footer: umdFooter
     }
 }

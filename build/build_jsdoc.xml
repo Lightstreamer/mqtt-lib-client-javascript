@@ -4,7 +4,7 @@
   <property environment="env" />
   <import file="commons.xml" />
 
-  <property name="jsdoc.cmd.path" location="${temp_dir}/node_modules/.bin" />
+  <property name="jsdoc.cmd.path" location="../node_modules/.bin" />
   <property name="jsdoc_output" location="${temp_dir}/temp_docs" />
   <property name="conf_file" location="${doc_res}/jsdoc3.json" />
   <property name="summary_file_name" value="jsdoc_summary_${library}.html" />
@@ -34,10 +34,6 @@
   </target>
 
   <target name="deps" depends="fix-js" unless="jsdoc.installed">
-    <antcall target="installNodeDep" inheritAll="true" >
-      <param name="dir" location="${temp_dir}" />
-      <param name="module" value="jsdoc@${jsdoc.version}" />
-    </antcall>
     <copy toDir="${temp_dir}/${template}">
       <fileset dir="${doc_res}/${template}" />
     </copy>
@@ -91,7 +87,7 @@
       <arg value="${input_dir}" />
     </exec>
 
-    <copy file="${jsdoc_output}/externs.js" tofile="${output_externs}" />
+    <!--copy file="${jsdoc_output}/externs.js" tofile="${output_externs}" /-->
     <copy file="${logo_file}" toDir="${jsdoc_output}" />
 
   </target>

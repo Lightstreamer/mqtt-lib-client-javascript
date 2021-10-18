@@ -21,6 +21,8 @@
   <property name="version_res" location="${dist}/version_res" />
 
   <property name="test_folder" location="./tests/web" />
+  <property name="test_lib_folder" location="./tests/web/lib" />
+  <property name="test_lib_name" value="${client_library.name}-test.js" />
 
   <property name="orig_lib_name" value="${client_library.name}_orig.js" />
   <property name="all_lib_name" value="${client_library.name}_all.js" />
@@ -39,7 +41,7 @@
   <property name="web_client_imports" location="import/web_client_imports" />
   <property name="utility-logging-imports" location="${web_client_imports}/utility-logging-javascript" />
   <property name="web_client_bin" location="import/web_client_bin/lib" />
-  <property name="web_client_ver" location="import/web_client_bin/version_res" />
+  <property name="web_client_ver" value="${version_res}" />
 
   <property name="externs_file" location="${lib_folder}/${client_library.name}-externs.js" />
   <property name="input_node_externs_file" location="${build_res}/node-externs.js" />
@@ -64,16 +66,6 @@
   </target>
 
   <target name="deps" depends="init">
-    <!-- check firefox? -->
-    <!-- check node? -->
-    <antcall target="installNodeDep" inheritAll="true">
-      <param name="dir" value="${tmp}" />
-      <param name="module" value="requirejs" />
-    </antcall>
-
-    <copy toDir="${tmp}/lib_generator">
-      <fileset dir="${generator_src}" />
-    </copy>
   </target>
 
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooVERSIONING -->
@@ -81,8 +73,8 @@
     <antcall target="reportEmbeddedVersion">
       <param name="report_file" value="${version_res}/client_embedded_version.number" />
       <param name="dependency" value="Lightstreamer SDK for Web Clients" />
-      <param name="version_file" value="${web_client_ver}/version.number" />
-      <param name="build_file" value="${web_client_ver}/build.number" />
+      <param name="version_file" value="${web_client_ver}/embedded_version.number" />
+      <param name="build_file" value="${web_client_ver}/embedded_build.number" />
     </antcall>
 
     <ant antfile="${build_res}/build_version.xml" inheritAll="false">
@@ -91,6 +83,7 @@
     <loadfile property="lighstreamer_sdk.compat.version" srcFile="${version_res}/client_embedded_version.number" />
     <loadfile property="current.version" srcFile="${version_res}/version.number" />
     <loadfile property="current.build" srcFile="${version_res}/build.number" />
+    <loadfile property="embedded.current.version" srcFile="${web_client_ver}/embedded_version.number" />
     <loadfile property="external.apidoc.reference" srcFile="${version_res}/external_apidoc_reference" />
     <copy file="${build_res}/PRODUCT.info" todir="${version_res}" overwrite="true" verbose="true" />
 
@@ -139,35 +132,26 @@ ${distribution_date}
     <echo>Replacing token [PRODUCT_NAME_PLACEHOLDER] with ${product.name}</echo>
     <replace dir="${temp_src}" token="PRODUCT_NAME_PLACEHOLDER" value="${product.name}" />
 
-    <ant antfile="${build_res}/build_compile.xml" inheritAll="false">
-      <property name="input_dir" value="${temp_src}" />
-      <property name="built_dir" value="${tmp}/built" />
-      <property name="rjs_options_dir" value="${tmp}" />
-      <property name="input_node_externs" value="${input_node_externs_file}" />
-      <property name="input_externs" value="${input_externs_file}" />
-      <property name="input_logging_externs" value="${input_logging_externs_file}" />
-      <property name="library" value="javascript" />
-      <property name="version" value="${current.version}" />
-      <property name="build" value="${current.build}" />
-      <property name="res" value="${res}" />
-      <property name="output_file" value="${lib_folder}/${orig_lib_name}" />
-    </ant>
-  </target>
+    <exec executable="node" dir="${build_res}" >
+      <arg value="bundle_web.js" />
+      <arg value="${temp_src}" />
+      <arg value="${lib_folder_npm}/dist/${lib_name}" />
+      <arg value="${current.version}" />
+      <arg value="${current.build}" />
+    </exec>
 
-  <!--  oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooMANUAL OBFUSCATION OF PRIVATE CLASS NAMES-->
-  <target name="manual_obf" depends="compile_all">
-    <exec executable="node" dir="${res}" >
-      <arg value="node_auto_alias.js" />
-      <arg value="${lib_folder}/${orig_lib_name}" />
-      <arg value="./alias_conf.js" />
-      <!-- change prefix when cloning, in use at the time of writing are lsc, lsj and lsm -->
-      <arg value="lsm" />
-      <arg value="${lib_folder}/${all_lib_name}" />
+    <!-- Generazione della versione UMD che esporta altri simboli, per essere utilizzati in fase di test-->
+    <exec executable="node" dir="${build_res}" >
+      <arg value="bundle_web_test.js" />
+      <arg value="${temp_src}" />
+      <arg value="${test_lib_folder}/${test_lib_name}" />
+      <arg value="${current.version}" />
+      <arg value="${current.build}" />
     </exec>
   </target>
 
   <!--  oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooGENERATE CUSTOM BUILDS-->
-  <target name="prepare_packagejson_npm" depends="manual_obf">
+  <target name="prepare_packagejson_npm" depends="compile_all">
     <copy file="${packagejson_template}" tofile="${packagejson_deploy}" overwrite="true" verbose="true" />
     <copy file="${readme_template}" tofile="${readme_deploy}" overwrite="true" verbose="true" />
 
@@ -192,69 +176,7 @@ ${distribution_date}
     </replace>
   </target>
 
-  <target name="prepare_custom_libs" depends="prepare_packagejson_npm">
-    <copy file="${copyright_template.src}" tofile="${copyright_template}" overwrite="true" />
-    <replace file="${copyright_template}">
-      <replacefilter token="HOME_PAGE_PLACEHOLDER" value="${product.homepage}" />
-      <replacefilter token="BRANDED_PRODUCT_NAME_PLACEHOLDER" value="${branded_product.name}" />
-    </replace>
-
-    <!-- Concateniamo i due file -->
-    <concat destfile="${lib_folder}/${lib_name}.tmp" fixlastline="yes" eol="lf">
-      <fileset file="${web_client_bin}/${web_client_all_lib_name}" />
-      <fileset file="${lib_folder}/${all_lib_name}" />
-    </concat>
-
-    <!-- Generazione della versione UMD , che include la versione stripped-down del client LS + client MQTT-->
-    <mkdir dir="${lib_folder_npm}/dist" />
-    <exec executable="node" dir="${generator}" >
-      <arg value="node_generate_lib.js" />
-      <arg value="Web" />
-      <arg value="${lib_folder}/${lib_name}.tmp" />
-      <!-- libType -->
-      <arg value="UMD" />
-      <!-- include onefilerequire -->
-      <arg value="'data-mqttcool-ns'" />
-      <!-- defaultNamespace -->
-      <arg value="'mqttcool'" />
-      <arg value="${copyright_template}" />
-      <arg value="${lib_folder_npm}/dist/${lib_name}" />
-      <!-- Alternative name for unpkg.com -->
-      <arg value="'mqtt.cool-web-client'" />
-      <arg value="Lightstreamer" />
-      <arg value="LightstreamerClient" />
-      <arg value="Subscription" />
-      <arg value="SimpleLoggerProvider" />
-      <arg value="LoggerManager" />
-      <arg value="BufferAppender" />
-      <arg value="ConsoleAppender" />
-      <arg value="FunctionAppender" />
-      <arg value="RemoteAppender" />
-      <arg value="LogMessages" />
-      <arg value="Environment" />
-      <arg value="Inheritance" />
-      <arg value="IllegalStateException" />
-      <!-- This avoids to include class ConnectionSharing and all relative dependencies -->
-      <arg value="ls_sbc@ls_sbc_alt" />
-      <arg value="Promise@AltPromise" />
-      <!-- This avoids to include external npm modules, which are actually not need in the web -->
-      <arg value="req@req_alt" />
-      <!-- Add modules from MQTT.Cool library to be exported -->
-      <arg value="LightstreamerMQTT" />
-      <arg value="openSession" />
-      <arg value="Message" />
-    </exec>
-
-    <fixcrlf file="${lib_folder_npm}/dist/${lib_name}" eol="unix" />
-
-    <!-- Remove temporary file -->
-    <delete file="${lib_folder}/${lib_name}.tmp" />
-
-    <!-- Cancellazione del copyright template -->
-    <delete dir="${tmp_dist}" />
-  </target>
-
-  <target name="copyChangeLog" depends="prepare_custom_libs">
+  <target name="copyChangeLog" depends="prepare_packagejson_npm">
     <copy file="${templates}/changelog/CHANGELOG_MASTER_Web.md" toFile="${online_sdk}/CHANGELOG.md" />
     <replace file="${online_sdk}/CHANGELOG.md">
       <replacefilter token="SDK_VERSION" value="${current.version}" />
