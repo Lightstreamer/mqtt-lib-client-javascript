@@ -1,5 +1,13 @@
-1.2.5 build 215 (16 Apr 2020)
+2.0.0-alpha build 216 (18 Oct 2021)
 -----------------------------
+
+**Improvements**
+
+- Rebuilt from Lightstreamer SDK for Node.js Clients version 8.0.3 build 1787.
+
+
+1.2.5 build 215 (16 Apr 2020)
+------------------------------
 
 **Bug Fixes**
 

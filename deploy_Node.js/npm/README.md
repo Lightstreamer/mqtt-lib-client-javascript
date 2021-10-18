@@ -60,14 +60,14 @@ client.send(message)
 
 ## Compatibility
 - Compatible with MQTT.Cool since version 1.2.0.
-- Based on Lightstreamer SDK for Node.js Clients version 7.2.4 build 1757.
+- Based on Lightstreamer SDK for Node.js Clients version 8.0.3 build 1787.
 - Compatible with code developed with the previous version.
 
 ## Changelog
-See detailed changes on https://mqtt.cool/download/changelog/?component=nodejs&version=1.2.5
+See detailed changes on https://mqtt.cool/download/changelog/?component=nodejs&version=2.0.0-alpha
 
 ## Documentation
-- [API Reference](https://docs.mqtt.cool/nodejs-client-sdk/1.2.5/api/index.html)
+- [API Reference](https://docs.mqtt.cool/nodejs-client-sdk/2.0.0-alpha/api/index.html)
 - Chapter ["Client Application Development"](https://docs.mqtt.cool/server/guides/MQTT.Cool+Getting+Started+Guide.html#_client_application_development) of _Getting Started Guide_
 
 For further details, visit the [SDK section](https://mqtt.cool/download/nodejs-client-sdk-latest/) on the MQTT.Cool site.
