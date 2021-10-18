@@ -17,7 +17,7 @@
     * `deploy_*/release.properties`
     * `templates/*`
 
-- altri links utili
+- links utili
     * https://rollupjs.org/guide/en/#big-list-of-options
     * https://jsdoc.app
 
