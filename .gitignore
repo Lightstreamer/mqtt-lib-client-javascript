@@ -1,2 +1,3 @@
 node_modules/
 tests/nodejs/lib/
+tests/web/lib
