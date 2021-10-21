@@ -64,10 +64,10 @@ client.send(message)
 - Compatible with code developed with the previous version.
 
 ## Changelog
-See detailed changes on https://mqtt.cool/download/changelog/?component=nodejs&version=2.0.0-alpha
+See detailed changes on https://mqtt.cool/download/changelog/?component=nodejs&version=2.0.0
 
 ## Documentation
-- [API Reference](https://docs.mqtt.cool/nodejs-client-sdk/2.0.0-alpha/api/index.html)
+- [API Reference](https://docs.mqtt.cool/nodejs-client-sdk/2.0.0/api/index.html)
 - Chapter ["Client Application Development"](https://docs.mqtt.cool/server/guides/MQTT.Cool+Getting+Started+Guide.html#_client_application_development) of _Getting Started Guide_
 
 For further details, visit the [SDK section](https://mqtt.cool/download/nodejs-client-sdk-latest/) on the MQTT.Cool site.
