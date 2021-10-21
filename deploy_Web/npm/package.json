@@ -1,6 +1,6 @@
 {
   "name": "mqtt.cool-web-client",
-  "version": "2.0.0-alpha",
+  "version": "2.0.0",
   "description": "JavaScript library for the development of MQTT.Cool clients running inside the web browser",
   "keywords": [
     "mqtt.cool",

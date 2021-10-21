@@ -27,7 +27,7 @@ Then load it from local `node_modules`:
 The library is also available on [unpkg](https://unpkg.com/mqtt.cool-web-client),
 to which you can point directly in the script tag:
 ```html
-<script src="https://unpkg.com/mqtt.cool-web-client@2.0.0-alpha/dist/mqtt.cool.js"></script>
+<script src="https://unpkg.com/mqtt.cool-web-client@2.0.0/dist/mqtt.cool.js"></script>
 ```
 
 ## Development
@@ -75,10 +75,10 @@ client.send(message)
 - Compatible with code developed with the previous version.
 
 ## Changelog
-See detailed changes on https://mqtt.cool/download/changelog/?component=web&version=2.0.0-alpha
+See detailed changes on https://mqtt.cool/download/changelog/?component=web&version=2.0.0
 
 ## Documentation
-- [API Reference](https://docs.mqtt.cool/web-client-sdk/2.0.0-alpha/api/index.html)
+- [API Reference](https://docs.mqtt.cool/web-client-sdk/2.0.0/api/index.html)
 - Chapter ["Client Application Development"](https://docs.mqtt.cool/server/guides/MQTT.Cool+Getting+Started+Guide.html#_client_application_development) of _Getting Started Guide_
 
 For further details, visit the [SDK section](https://mqtt.cool/download/web-client-sdk-latest/) on the MQTT.Cool site.
