@@ -1,11 +1,11 @@
-'use strict';
-define(['./DefaultStorage', 'LoggerManager'],
-  function(DefaultStorage, LoggerManager) {
+import DefaultStorage from 'DefaultStorage_stub';
+import LoggerManager from '../LoggerManager';
 
     var log = LoggerManager.getLoggerProxy('mqtt.cool.store');
 
     /**
      * @constructor
+     * @ignore
      **/
     var Store = function() {
       /** @type {number} */
@@ -183,7 +183,7 @@ define(['./DefaultStorage', 'LoggerManager'],
       /**
        * @param {function} consumerFunc
        * @param {function} postProcessFunc
-       * @param {Object} thisArg
+       * @param {Object} [thisArg]
        */
       processInOrder: function(consumerFunc, postProcessFunc, thisArg) {
         if (!this._enabled) {
@@ -243,5 +243,4 @@ define(['./DefaultStorage', 'LoggerManager'],
     Store.prototype['processInOrder'] = Store.prototype.processInOrder;
     Store.prototype['clear'] = Store.prototype.clear;
 
-    return Store;
-  });
+    export default Store;

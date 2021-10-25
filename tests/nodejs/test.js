@@ -74,7 +74,7 @@ var mqtt_cool = require('./lib/' + library + '-test.js');
 var Suites = require(commonLibsFolder + '/suites.js');
 
 // Load the XMLHttpRequest package to be injected later on docker module.
-var xhrc = require('./lib/node_modules/xmlhttprequest');
+var xhrc = require('../../node_modules/xmlhttprequest');
 var XMLHttpRequest = xhrc.XMLHttpRequest;
 
 // Load first the Docker module, as it does not have any dependencies.

@@ -1,11 +1,10 @@
-define([], function() {
+
   /**
    * Interface to be implemented for providing a custom storage layer to an
    * {@link MqttClient} instance that connects requiring the management of
    * session persistence.
    *
    * @see {@link MqttClient#connect}
-   * @exports MqttStorage
    * @interface
    */
   function MqttStorage() { }
@@ -46,4 +45,4 @@ define([], function() {
      */
     keys: function() { }
   };
-});
+

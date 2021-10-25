@@ -1,8 +1,8 @@
-'use strict';
-define(['LightstreamerClient', './utils/Objects', 'LoggerManager',
-  './impl/MQTTCoolSessionImpl', './utils/Errors'],
-function(LightstreamerClient, Objects, LoggerManager, MQTTCoolSessionImpl,
-  Errors) {
+import {LightstreamerClient} from 'lightstreamer-client-stub';
+import Objects from './utils/Objects';
+import LoggerManager from './LoggerManager';
+import MQTTCoolSessionImpl from './impl/MQTTCoolSessionImpl';
+import Errors from './utils/Errors';
 
   var logger = LoggerManager.getLoggerProxy('mqtt.cool');
   logger.info('Logger SETUP');
@@ -31,6 +31,7 @@ function(LightstreamerClient, Objects, LoggerManager, MQTTCoolSessionImpl,
    * A constant string representing the name of the library.
    * @type {string}
    * @public
+   * @ignore
    */
   var LIB_NAME = 'library_tag_placeholder';
 
@@ -38,6 +39,7 @@ function(LightstreamerClient, Objects, LoggerManager, MQTTCoolSessionImpl,
      * A constant string representing the version of the library.
      * @type {string}
      * @public
+     * @ignore
      */
   var LIB_VERSION = 'version_placeholder build build_placeholder';
 
@@ -109,6 +111,7 @@ function(LightstreamerClient, Objects, LoggerManager, MQTTCoolSessionImpl,
      *   See {@link EXTERNAL_APIDOC_REFERENCE/ConnectionDetails.html#setServerAddress ConnectionDetails#setServerAddress}
      *   for details.
      * @function openSession
+     * @suppress {checkTypes}
      */
   var openSession = function(serverAddress, username, password, listener) {
     logger.debug('Creating a new MQTTCoolSession');
@@ -231,6 +234,4 @@ function(LightstreamerClient, Objects, LoggerManager, MQTTCoolSessionImpl,
   openSession['LIB_VERSION'] = LIB_VERSION;
   openSession['ADAPTER_SET'] = ADAPTER_SET;
 
-  return openSession;
-});
-
+  export default openSession;

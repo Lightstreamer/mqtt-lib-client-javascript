@@ -1,12 +1,14 @@
 'use strict';
-define(['./MqttClientImpl', '../utils/Objects', '../utils/Env'],
-  function(MqttClientImpl, Objects, Env) {
+import MqttClientImpl from './MqttClientImpl';
+import Objects from '../utils/Objects';
+import Env from '../utils/Env';
 
     /**
      * @constructor
      * @param {string} sessionId -
      * @param {LightstreamerClient} lsClient -
      * @implements {MQTTCoolSession}
+     * @ignore
      */
     var MQTTCoolSessionImpl = function(sessionId, lsClient) {
       this._sessionId = sessionId;
@@ -74,5 +76,4 @@ define(['./MqttClientImpl', '../utils/Objects', '../utils/Env'],
     MQTTCoolSessionImpl.prototype['close'] =
       MQTTCoolSessionImpl.prototype.close;
 
-    return MQTTCoolSessionImpl;
-  });
+    export default MQTTCoolSessionImpl;

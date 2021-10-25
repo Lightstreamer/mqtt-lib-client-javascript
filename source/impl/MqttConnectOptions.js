@@ -1,6 +1,5 @@
-'use strict';
-define(['../utils/Objects', 'LoggerManager'],
-  function(Objects, LoggerManager) {
+import Objects from '../utils/Objects';
+import LoggerManager from '../LoggerManager';
 
     var logger = LoggerManager.getLoggerProxy('mqtt.cool');
 
@@ -28,6 +27,7 @@ define(['../utils/Objects', 'LoggerManager'],
      *          onSuccess:?function,
      *          onFailure:?function,
      *          onNotAuthorized:?function}=} connectOptions
+     * @ignore
      */
     var MqttConnectOptions = function(connectOptions) {
       // Prepare default not nullable settings.
@@ -124,6 +124,11 @@ define(['../utils/Objects', 'LoggerManager'],
           [responseObject]);
       },
 
+      /**
+       * 
+       * @param {*} message 
+       * @param {*} [object] 
+       */
       _debug: function(message, object) {
         logger.debug('MqttConnectionOptions.' + message + JSON.stringify(
           object || ''));
@@ -153,5 +158,4 @@ define(['../utils/Objects', 'LoggerManager'],
     MqttConnectOptions.prototype['onNotAuthorized'] =
       MqttConnectOptions.prototype.onNotAuthorized;
 
-    return MqttConnectOptions;
-  });
+    export default MqttConnectOptions;

@@ -1,6 +1,4 @@
-'use strict';
-define(['./Objects'],
-  function(Objects) {
+import Objects from './Objects';
 
     var mkEvent = Objects.makeErrorEvent;
 
@@ -100,7 +98,7 @@ define(['./Objects'],
         if (code > 0) {
           return Types.SERVER_ERROR;
         }
-        var errorType = this.invMap[String(code)];
+        var errorType = Errors.invMap[String(code)];
         return errorType;
       },
 
@@ -114,8 +112,8 @@ define(['./Objects'],
           var responseObj = mkEvent(wrappedMsg['code'], wrappedMsg['message']);
           return responseObj;
         }
+        return null;
       }
     };
 
-    return Errors;
-  });
+    export default Errors;

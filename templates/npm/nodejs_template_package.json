@@ -34,7 +34,6 @@
   ],
 
   "dependencies": {
-    "faye-websocket": "^0.11.0",
-    "xmlhttprequest-cookie": "^0.9.4"
+    "lightstreamer-client-node": "EMBEDDED_VER_PLACEHOLDER"
   }
 }

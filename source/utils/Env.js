@@ -1,5 +1,4 @@
-'use strict';
-define([], function() {
+
 
   var isNodeJSVar = typeof process == 'object' && (/node(\.exe)?$/
     .test(process.execPath) || (process.node && process.v8) ||
@@ -18,7 +17,7 @@ define([], function() {
      * @return {string} The decoded string.
      */
     decodeFromBase64: function(encoded) {
-      if (this.isNodeJs()) {
+      if (Env.isNodeJs()) {
         return new Buffer(encoded, 'base64').toString();
       } else {
         return atob(encoded);
@@ -32,7 +31,7 @@ define([], function() {
      * @return {string} The encoded Base64 string.
      */
     encodeToBase64: function(decoded) {
-      if (this.isNodeJs()) {
+      if (Env.isNodeJs()) {
         return new Buffer(decoded).toString('base64');
       } else {
         return btoa(decoded);
@@ -44,5 +43,4 @@ define([], function() {
   Env['decodeFromBase64'] = Env.decodeFromBase64;
   Env['encodeToBase64'] = Env.encodeToBase64;
 
-  return Env;
-});
+  export default Env;

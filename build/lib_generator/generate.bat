@@ -1,2 +1,0 @@
-#node node_generate_lib.js Web ..\..\deploy\lib\mqtt.cool.js.tmp UMD 'data-mqttcool-ns' 'mqttcool' conf_files\copyright_template.js output.js 'mqtt.cool-web-client' Lightstreamer
-node node_generate_lib.js Web ..\..\deploy\lib\mqtt.cool.js.tmp UMD 'data-mqttcool-ns' 'mqttcool' conf_files\copyright_template.js output.js Lightstreamer

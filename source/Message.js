@@ -1,12 +1,9 @@
-'use strict';
-define(['./utils/Objects'], function(Objects) {
+import Objects from './utils/Objects';
   /**
    * Constructs a <code>PUBLISH</code> Control Packet wrapper starting from a
    * payload, which can be specified in different formats.
    *
    * @constructor
-   *
-   * @exports Message
    *
    * @param {!(string|ArrayBuffer|Int8Array|Uint8Array|Int16Array|Uint16Array
    *   |Int32Array|Uint32Array|Float32Array|Float64Array)} payload - The payload
@@ -278,5 +275,4 @@ define(['./utils/Objects'], function(Objects) {
     }
   });
 
-  return Message;
-});
+  export default Message;

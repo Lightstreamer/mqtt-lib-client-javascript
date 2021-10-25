@@ -1,4 +1,4 @@
-var library = 'mqtt.cool';
+var library = 'mqtt.cool-test';
 var params = document.location.search.substring(1).split('&');
 var min = params.indexOf('min') != -1;
 
@@ -11,7 +11,7 @@ moreDeps.push(libFolder + '/scenario.js');
 moreDeps.push(libFolder + '/docker.js');
 
 function loadMinDep() {
-  moreDeps.push('../../deploy_Web/npm/dist/' + library + '.js');
+  moreDeps.push('lib/' + library + '.js');
   requirejs.config({
     deps: moreDeps,
     config: {

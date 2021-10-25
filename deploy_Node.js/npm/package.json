@@ -1,6 +1,6 @@
 {
   "name": "mqtt.cool-node-client",
-  "version": "1.2.5",
+  "version": "2.0.0",
   "description": "JavaScript library for the development of MQTT.Cool clients running on the Node.js runtime",
   "keywords": [
     "mqtt.cool",
@@ -34,7 +34,6 @@
   ],
 
   "dependencies": {
-    "faye-websocket": "^0.11.0",
-    "xmlhttprequest-cookie": "^0.9.4"
+    "lightstreamer-client-node": "8.0.3"
   }
 }

@@ -1,5 +1,4 @@
-'use strict';
-define(['../utils/Objects'], function(Objects) {
+import Objects from '../utils/Objects';
   // Allowed keys and relative types.
   var types = {
     'qos': { 'type': 'number' },
@@ -12,6 +11,7 @@ define(['../utils/Objects'], function(Objects) {
   /**
    * @constructor
    * @param {Object=} subscribeOptions
+   * @ignore
    */
   var MqttSubscribeOptions = function(subscribeOptions) {
     /** @type {!Object} */
@@ -101,5 +101,4 @@ define(['../utils/Objects'], function(Objects) {
   MqttSubscribeOptions.prototype['onNotAuthorized'] =
     MqttSubscribeOptions.prototype.onNotAuthorized;
 
-  return MqttSubscribeOptions;
-});
+  export default MqttSubscribeOptions;

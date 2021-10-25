@@ -1,1 +1,0 @@
-java -cp compiler.jar;js.jar org.mozilla.javascript.tools.shell.Main r.js -o full.build.js

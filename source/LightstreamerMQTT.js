@@ -1,10 +1,10 @@
-define([], function() {
+
 
   var LightstreamerMQTT = {
 
     toString: function() {
-      return '[BRANDED_PRODUCT_NAME_PLACEHOLDER ' + this['library'] +
-        ' client version ' + this['version'] + ' build ' + this['build'] + ']';
+      return '[BRANDED_PRODUCT_NAME_PLACEHOLDER ' + LightstreamerMQTT['library'] +
+        ' client version ' + LightstreamerMQTT['version'] + ' build ' + LightstreamerMQTT['build'] + ']';
     }
   };
 
@@ -14,5 +14,4 @@ define([], function() {
   LightstreamerMQTT['build'] = 'build_placeholder';
 
 
-  return LightstreamerMQTT;
-});
+  export default LightstreamerMQTT;

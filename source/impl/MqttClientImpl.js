@@ -1,11 +1,15 @@
-'use strict';
-define(['LightstreamerClient', 'Subscription', 'LoggerManager',
-  '../utils/Objects', '../utils/Errors', '../utils/Json', '../utils/Env',
-  '../store/Store', '../Message', './MqttSubscribeOptions',
-  './MqttUnsubscribeOptions', './MqttConnectOptions'],
-  function(LightstreamerClient, Subscription, LoggerManager, Objects, Errors,
-    Json, Env, Store, Message, MqttSubscribeOptions, MqttUnsubscribeOptions,
-    MqttConnectOptions) {
+import {LightstreamerClient} from 'lightstreamer-client-stub';
+import {Subscription} from 'lightstreamer-client-stub';
+import LoggerManager from '../LoggerManager';
+import Objects from '../utils/Objects';
+import Errors from '../utils/Errors';
+import Json from '../utils/Json';
+import Env from '../utils/Env';
+import Store from '../store/Store';
+import Message from '../Message';
+import MqttSubscribeOptions from './MqttSubscribeOptions';
+import MqttUnsubscribeOptions from './MqttUnsubscribeOptions';
+import MqttConnectOptions from './MqttConnectOptions';
 
     var logger = LoggerManager.getLoggerProxy('mqtt.cool');
 
@@ -18,7 +22,7 @@ define(['LightstreamerClient', 'Subscription', 'LoggerManager',
 
     /**
       * All possible Client states.
-      * @enum {number}
+      * enum {number}
       * @private
       */
     var STATUS = {
@@ -142,6 +146,7 @@ define(['LightstreamerClient', 'Subscription', 'LoggerManager',
      *   packaged as a JSON string for later delivery to MQTT.Cool.
      * @param {boolean=} requireAck - Optional flag indicating whether the
      *   packet requires an acknowledge back from MQTT.Cool.
+     * @ignore
      */
     var Packet = function(body, requireAck) {
       this['body'] = body;
@@ -351,6 +356,8 @@ define(['LightstreamerClient', 'Subscription', 'LoggerManager',
 
     /**
      * @private
+     * @constructor
+     * @param {Object} [delegate]
      */
     var ProtocolListener = function(delegate) {
       this._delegate = delegate;
@@ -440,7 +447,7 @@ define(['LightstreamerClient', 'Subscription', 'LoggerManager',
       },
 
       /**
-       * @param {Subscription} subscription -
+       * @param {Subscription} [subscription] -
        * @private
        */
       onSharedUnsubscription: function(subscription) {
@@ -637,6 +644,7 @@ define(['LightstreamerClient', 'Subscription', 'LoggerManager',
       * @param {string} brokerAlias
       * @param {string} clientId
       * @param {!LightstreamerClient} lsClient
+      * @ignore
       */
     var MqttClientImpl = function(brokerAlias, clientId, lsClient) {
       logger.debug('Creating a new instance of MqttClient');
@@ -791,7 +799,6 @@ define(['LightstreamerClient', 'Subscription', 'LoggerManager',
       },
 
       /**
-       * @param {STATUS} state -
        * @throws {Error}
        * @private
        */
@@ -1433,7 +1440,7 @@ define(['LightstreamerClient', 'Subscription', 'LoggerManager',
         // protocol).
         if (activeSubscription) {
           var self = this;
-          function resubscribe(subscription) {
+          var resubscribe = function(subscription) {
             subscription.addListener({
               onUnsubscription: function() {
                 subscription.removeListener(this);
@@ -1724,7 +1731,7 @@ define(['LightstreamerClient', 'Subscription', 'LoggerManager',
             'associated with:', topicFilter);
 
           var self = this;
-          function unsubscribe(subscription) {
+          var unsubscribe = function(subscription) {
             // Get the native Lightstreamer subscription for adding a specific
             // listener that will handle the explicit unsubscription option.
             // We do that here and not in the listener created at the time
@@ -2015,7 +2022,7 @@ define(['LightstreamerClient', 'Subscription', 'LoggerManager',
           }
         } catch (e) {
           var error = e;
-          if (!e instanceof Error) {
+          if (!(e instanceof Error)) {
             error = new Error(e);
           }
           this._stop(error);
@@ -2613,7 +2620,7 @@ define(['LightstreamerClient', 'Subscription', 'LoggerManager',
             this._tryRecovery(this._status, changedStatus);
           } catch (e) {
             var error = e;
-            if (!error instanceof Error) {
+            if (!(error instanceof Error)) {
               error = new Error(e);
             }
             this._stop(error);
@@ -2809,5 +2816,4 @@ define(['LightstreamerClient', 'Subscription', 'LoggerManager',
       }
     });
 
-    return MqttClientImpl;
-  });
+    export default MqttClientImpl;

@@ -1,5 +1,5 @@
-'use strict';
-define(['LoggerManager'], function(LoggerManager) {
+import LoggerManager from '../LoggerManager';
+
   var logger = LoggerManager.getLoggerProxy('mqtt.cool');
 
   /**
@@ -202,5 +202,4 @@ define(['LoggerManager'], function(LoggerManager) {
   Objects['makeEvent'] = Objects.makeEvent;
   Objects['makeErrorEvent'] = Objects.makeErrorEvent;
 
-  return Objects;
-});
+  export default Objects;

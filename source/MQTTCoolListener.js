@@ -1,4 +1,4 @@
-define([], function() {
+
   /**
    * Interface to be implemented for receiving events related to the creation of
    * {@link MQTTCoolSession} instances.
@@ -22,7 +22,6 @@ define([], function() {
    *   onConnectionFailure : function(errorType, errorCode, errorMessage) { ... }
    * }
    * </pre>
-   * @exports MQTTCoolListener
    * @interface
    */
   function MQTTCoolListener() { }
@@ -90,4 +89,4 @@ define([], function() {
      */
     onConnectionFailure: function(errorType, errorCode, errorMessage) { }
   };
-});
+  
