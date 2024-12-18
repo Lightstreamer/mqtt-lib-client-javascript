@@ -72,17 +72,17 @@ The artifacts generated are saved in the directories `tools/dist-web` and `tools
 
 ## Documentation
 
-- [Getting Started Guide](https://docs.mqtt.cool/server/guides/MQTT.Cool+Getting+Started+Guide.html)
+- [Getting Started Guide](https://lightstreamer.com/mqttcool/server/guides/MQTT.Cool+Getting+Started+Guide.html)
 
-- [Live demos](https://mqtt.cool/demos/)
+- [Live demos](https://demos.lightstreamer.com/?p=mqttcool/)
 
-- [Web API Reference](https://mqtt.cool/docs/web-client-sdk/api/index.html)
+- [Web API Reference](https://lightstreamer.com/mqttcool/web-client-sdk/2.0.0/api/index.html)
 
-- [Node.js API Reference](https://mqtt.cool/docs/nodejs-client-sdk/api/index.html)
+- [Node.js API Reference](https://lightstreamer.com/mqttcool/nodejs-client-sdk/2.0.0/api/index.html)
 
 ## Support
 
-For questions and support please use the [Official Forum](https://mqtt.cool/forum/). The issue list of this page is **exclusively** for bug reports and feature requests.
+For questions and support please use the [Official Forum](https://forum.lightstreamer.com/t/mqtt-connector). The issue list of this page is **exclusively** for bug reports and feature requests.
 
 ## License
 
